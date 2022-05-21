@@ -1,19 +1,22 @@
-var personalInfo=[{
-    info:[
+// var personalInfo=[{
+//     info:[
 
-    ],
-    history:[
+//     ],
+//     history:[
 
-    ],
-    visits:[
+//     ],
+//     visits:[
 
-    ],
-    Endo:[
+//     ],
+//     Endo:[
 
-    ]
-}
-];
-    
+//     ]
+// }
+// ];
+let personalInfo=[];
+let history=[];
+let visits=[];
+
     
     
    
@@ -80,12 +83,13 @@ function historyInfo(){
             $(checkField).appendTo(checkContainer);
             $(checkLabel).appendTo(checkContainer);
             checkField.type="radio";
+            $(checkField).addClass('check-field');
             
             $(checkLabel).addClass("label");
             $(checkContainer).children().eq(1).text("Yes");
             $(checkContainer).children().eq(3).text("No");
-            $(checkContainer).children().eq(0).val("Yes").attr("name",index);
-            $(checkContainer).children().eq(2).val("No").attr("name",index);
+            $(checkContainer).children().eq(0).val("Yes").attr("name",history.length+index);
+            $(checkContainer).children().eq(2).val("No").attr("name",history.length+index);
             
             $(checkField).on('click',function(){
                 $(this).attr("checked",true);
@@ -177,25 +181,22 @@ $(".add-patient").on("click",function(){
 $(".save-button").on("click",function(){
 
     $(this).addClass("hide");
-    personalInfo[index].info.push({
+    $("input").val("");
+    personalInfo.push({
         name:$("#input-name").val(),
         age:$("#input-age").val(),
         gender:$("#input-gender").val(),
         date:$("#input-date").val(),
         phone:$("#input-phone").val()
     });
-    $("#input-name").val("");
-    $("#input-age").val("");
-    $("#input-gender").val("");
-    $("#input-date").val("");
-    $("#input-phone").val("");
-    personalInfo[index].history.push({
+    
+    history.push({
         Diabetic:$(".diseases").eq(0).siblings().attr("value"),
         Hypertensive:$(".diseases").eq(1).siblings().attr("value"),
         Hepatic:$(".diseases").eq(2).siblings().attr("value"),
         Gland:$(".diseases").eq(3).siblings().attr("value")
     });
-    personalInfo[index].visits.push({
+    visits.push({
         firstDate:$(".first-date").val(),
         firstNotes:$(".first-notes").val(),
         secondDate:$(".second-date").val(),
@@ -205,11 +206,12 @@ $(".save-button").on("click",function(){
         fourthDate:$(".fourth-date").val(),
         fourthNotes:$(".fourth-notes").val(),
         
-    })
-   index++; 
-   personalInfo.length++;
-
+    });
+    
+   
 })
 
 console.log(personalInfo);
+console.log(history);
+console.log(visits);
 
