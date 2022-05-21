@@ -1,0 +1,104 @@
+body{
+    background-color: hsl(235, 21%, 11%);
+    background-image: url("../IMG-20220521-WA0004.jpg");
+    background-size:cover;
+
+}
+/* .header{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin-top:50px;
+    
+}
+.back-img{
+    
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-self:center;
+   
+} */
+.add-data{
+    width:60%;
+    background-color: white;
+    color:black;
+    margin-top:70px;
+    height:fit-content;
+    padding-top:20px;
+    padding-bottom: 20px;
+    
+}
+ul li{
+    margin-left:50px;
+}
+.hide{
+    display: none;
+}
+.add , .old ,.home{
+    border:none;
+    background-color: transparent;
+    color:black;
+}
+.card{
+    margin-top:200px;
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.info-buttons{
+    border:none;
+    background:transparent;
+    
+}
+.info-buttons:hover , .clicked{
+    color:lightgrey;
+    background-color:hsl(235, 21%, 11%);
+    border:1px solid hsl(235, 21%, 11%);
+    border-radius:5px;
+}
+.btn{
+    background-color:hsl(235, 21%, 11%);
+    color:white;
+}
+.btn:hover {
+    background-color:hsl(235, 21%, 11%);
+    color:white;
+}
+
+.info-style{
+    display:flex;
+    justify-content:flex-start;
+}
+.diseases-cont{
+    display:flex;
+    flex-flow:row;
+    justify-content:center;
+    align-items:center;
+    padding-left:20px;
+    justify-content:space-between;
+}
+.check-cont{
+    display:flex;
+    flex-flow:row;
+    align-items:center;
+    justify-content: space-between;
+    margin-left:50px;
+
+    
+}
+.check-field{
+    margin-left:30px;
+}
+.label{
+    display:flex;
+    align-self:center;
+    margin-left:10px;
+}
+.accordion-collapse{
+    display:flex;
+    flex-flow:column;
+}
+
+

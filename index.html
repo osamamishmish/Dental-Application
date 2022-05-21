@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/bootstrap.min.css" rel="stylesheet" >
+    <link href="./css/index.css" type="text/css" rel="stylesheet"  >
+    <title>Home</title>
+</head>
+<body>
+    
+
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">DR/Seif Dental Clinic</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
+                  <li class="nav-item">
+                    <button class="home">Home</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="add">Add Patient</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="old">My Patients</button>
+                  </li>
+                 
+                </ul>
+                
+              </div>
+            </div>
+          </nav>
+    </div>
+    <!-- <div class="container header">
+        <img src="./IMG-20220521-WA0004.jpg" class="back-img"/>
+    </div> -->
+
+  <div class="container-fluid">
+      <div class="container add-data hide">
+        <div class="mb-3 row">
+            <label for="input-name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="input-name" placeholder="Add Patient Name">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="input-age" class="col-sm-2 col-form-label">Age</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="input-age" placeholder="Add Patient Age">
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="input-gender" class="col-sm-2 col-form-label">Gender</label>
+            <div class="col-sm-10">
+                <select class="form-select" id="input-gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="input-date" class="col-sm-2 col-form-label">Date</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="input-date" placeholder="Add Visit Date">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="input-phone" class="col-sm-2 col-form-label">Number</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="input-phone" placeholder="Add Phone Number">
+            </div>
+          </div>
+          <button type="button" class="btn add-patient">Add Patient</button>
+      </div>
+  </div>
+    
+
+  <div class="card text-center hide">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs card-data">
+        <li class="nav-item ">
+          <button class="info">Personal Info</button>
+        </li>
+        <li class="nav-item">
+            <button class="history">Diseases history</button>
+        </li>
+        <li class="nav-item">
+            <button class="visits">visits</button>
+        </li>
+        <li class="nav-item">
+            <button class="endo">Endodonttic filling</button>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="accordion accordion-flush " id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              First visit
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse first-visit" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="form-floating mb-3 ">
+              <input type="text" class="form-control first-date" id="floatingInput" placeholder="Enter Visit date">
+              <label for="floatingInput">Date</label>
+            </div>
+            <div class="form-floating">
+              <input type="text" class="form-control first-notes" id="floatingNotes" placeholder="">
+              <label for="floatingNotes">Notes</label>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Second visit
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse second-visit" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="form-floating mb-3 ">
+              <input type="text" class="form-control second-date" id="floatingInput" placeholder="Enter Visit date">
+              <label for="floatingInput">Date</label>
+            </div>
+            <div class="form-floating">
+              <input type="text" class="form-control second-notes" id="floatingNotes" placeholder="">
+              <label for="floatingNotes">Notes</label>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Third visit
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse third-visit" aria-labelledby="flush-headingThird" data-bs-parent="#accordionFlushExample">
+            <div class="form-floating mb-3 ">
+              <input type="text" class="form-control third-date" id="floatingInput" placeholder="Enter Visit date">
+              <label for="floatingInput">Date</label>
+            </div>
+            <div class="form-floating">
+              <input type="text" class="form-control third-notes" id="floatingNotes" placeholder="">
+              <label for="floatingNotes">Notes</label>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                Fourth visit
+              </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse fourth-visit" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+              <div class="form-floating mb-3 ">
+                <input type="text" class="form-control fourth-date" id="floatingInput" placeholder="Enter Visit date">
+                <label for="floatingInput">Date</label>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control fourth-notes" id="floatingNotes" placeholder="">
+                <label for="floatingNotes">Notes</label>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+    </div>
+    <button class="btn save-button">save</button>
+  </div>
+
+
+
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script src="./js/bootstrap.bundle.min.js" ></script>
+<script src="./js/index.js" ></script>
+</body>
+</html>
