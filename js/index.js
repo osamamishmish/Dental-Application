@@ -215,10 +215,14 @@ $(".save-button").on("click",function(){
     
 
     history.push({
-        Diabetic:$(".diseases").eq(0).siblings().attr("value"),
-        Hypertensive:$(".diseases").eq(1).siblings().attr("value"),
-        Hepatic:$(".diseases").eq(2).siblings().attr("value"),
-        Gland:$(".diseases").eq(3).siblings().attr("value")
+        Diabetic:$(".diseases").eq(0).siblings().eq(1).attr("value"),
+        DiabeticComment:$(".comments-container").eq(0).children().val(),
+        Hypertensive:$(".diseases").eq(1).siblings().eq(1).attr("value"),
+        HypertensiveComment:$(".comments-container").eq(1).children().val(),
+        Hepatic:$(".diseases").eq(2).siblings().eq(1).attr("value"),
+        HepaticComment:$(".comments-container").eq(2).children().val(),
+        Gland:$(".diseases").eq(3).siblings().eq(1).attr("value"),
+        GlandComment:$(".comments-container").eq(3).children().val()
     });
     visits.push({
         firstDate:$(".first-date").val(),
@@ -231,7 +235,8 @@ $(".save-button").on("click",function(){
         fourthNotes:$(".fourth-notes").val(),
         
     });
-    $("input").val("");
+    $("input[type='text']").val("");
+    $("textarea").val("");
    
 })
 
