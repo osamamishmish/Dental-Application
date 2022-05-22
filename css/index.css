@@ -1,25 +1,9 @@
 body{
     background-color: hsl(235, 21%, 11%);
-    background-image: url("../IMG-20220521-WA0004.jpg");
+    background-image: url("../imgs/IMG-20220521-WA0004.jpg");
     background-size:cover;
 
 }
-/* .header{
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    margin-top:50px;
-    
-}
-.back-img{
-    
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-self:center;
-   
-} */
 .add-data{
     width:60%;
     background-color: white;
@@ -99,6 +83,18 @@ ul li{
 .accordion-collapse{
     display:flex;
     flex-flow:column;
+}
+.comments-container{
+    width:50%;
+    display:flex;
+    justify-content:center;
+    margin-left:auto;
+}
+.comments-field{
+    width:100%;
+    justify-content:flex-start;
+    height:30px;
+    border:1px solid lightgrey;
 }
 
 
