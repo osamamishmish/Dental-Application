@@ -25,9 +25,12 @@ $(".edit-button").addClass("hide");
 $(".accordion").addClass("hide");
 $(function(){
     $(".add").on("click",function(){
-        $(".add-data").toggleClass("hide");
+        $(".add-data").removeClass("hide");
+        $(".show-data").addClass("hide");
+        $(".old").removeClass("hide");
         
-    })
+    });
+    
 })
 
 
@@ -35,9 +38,10 @@ $(function(){
 //Home
 $(".home").on("click",function(){
     $(".add-data").addClass("hide");
-    // $(".header").removeClass("hide");
+    $(".show-data").addClass("hide");
     $(".card").addClass("hide");
-    $(".add").toggle();
+    $(".add").show();
+    $(".old").show();
     $(".accordion").addClass("hide");
 })
 
@@ -121,7 +125,7 @@ let index=0;
 
 //add new patient
 $(".add-patient").on("click",function(){
-    $(".add").toggle();
+    $(".add").addClass("hide");
     $(".history-container").addClass("hide");
     $(".add-data").toggleClass("hide");
      $(".card").toggleClass("hide");
@@ -157,7 +161,7 @@ $(".add-patient").on("click",function(){
         $(this).toggleClass("clicked");
         $(".info-container").addClass("hide");
         $(".history-container").removeClass("hide");
-        $(".info ,.visits").removeClass("clicked");
+        $(".info ,.visits ,.endo").removeClass("clicked");
         $(".accordion").addClass("hide");
         $(".save-button").addClass("hide");
         $(".edit-button").addClass("hide");
@@ -182,7 +186,26 @@ $(".add-patient").on("click",function(){
         $(".accordion").addClass("hide");
         $(".info ,.history , .visits").removeClass("clicked");
         $(".edit-button").addClass("hide");
-    })
+    });
+
+
+    //Home
+$(".home").on("click",function(){
+    $(".add-data").addClass("hide");
+    $(".show-data").addClass("hide");
+    $(".card").addClass("hide");
+    $(".add").show();
+    $(".old").show();
+    $(".accordion").addClass("hide");
+})
+
+// $(".old").on("click",function(){
+//     $(".show-data").removeClass("hide");
+//     $(".add-data").addClass("hide");
+//     $(".card").addClass("hide");
+//      $(".old").addClass("hide");
+//      $(".add").removeClass("hide");
+// });
    
     
 })
@@ -232,7 +255,7 @@ $(".save-button").on("click",function(){
         thirdDate:$(".third-date").val(),
         thirdNotes:$(".third-notes").val(),
         fourthDate:$(".fourth-date").val(),
-        fourthNotes:$(".fourth-notes").val(),
+        fourthNotes:$(".fourth-notes").val()
         
     });
     $("input[type='text']").val("");
@@ -240,7 +263,70 @@ $(".save-button").on("click",function(){
    
 })
 
+
+
+
+
+//Search Old Patients
+$(".old").on("click",function(){
+    $(".show-data").removeClass("hide");
+    $(".add-data").addClass("hide");
+    $(".card").addClass("hide");
+     $(".add").removeClass("hide");
+});
+
+//Get patient info
+$(".search").on("click",function(){
+    $(".old").addClass("hide");
+    $(".add").removeClass("hide");
+
+    for(let index=0 ; index<personalInfo.length ; index++){
+        if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
+            $(".info").toggleClass("clicked");
+            $(".history , .visits , .endo").removeClass("clicked");
+            $(".card").toggleClass("hide");
+            $(".show-data").addClass("hide");
+            $(".info-container").removeClass("hide");
+           
+            //pateint Data
+            $(".info-style").eq(0).text("Name :"+personalInfo[index].name);
+                $(".info-style").eq(1).text("Age :"+personalInfo[index].age);
+                $(".info-style").eq(2).text("Gender :"+personalInfo[index].gender);
+                $(".info-style").eq(3).text("Date :"+personalInfo[index].date);
+                $(".info-style").eq(4).text("Phone :"+personalInfo[index].phone);
+                $(".comments-container textarea").eq(0).val(history[index].DiabeticComment);
+                $(".comments-container textarea").eq(1).val(history[index].HypertensiveComment);
+                $(".comments-container textarea").eq(2).val(history[index].HepaticComment);
+                $(".comments-container textarea").eq(3).val(history[index].GlandComment);
+                $(".diseases").eq(0).siblings().eq(1).attr("value",history[index].Diabetic);
+                $(".diseases").eq(1).siblings().eq(1).attr("value",history[index].Hypertensive);
+                $(".diseases").eq(2).siblings().eq(1).attr("value",history[index].Hepatic);
+                $(".diseases").eq(3).siblings().eq(1).attr("value",history[index].Gland);
+                $(".first-date").val(visits[index].firstDate);
+                $(".first-notes").val(visits[index].firstNotes);
+                $(".second-date").val(visits[index].secondDate);
+                $(".second-notes").val(visits[index].secondNotes);
+                $(".third-date").val(visits[index].thirdDate);
+                $(".third-notes").val(visits[index].thirdNotes);
+                $(".fourth-date").val(visits[index].fourthDate);
+                $(".fourth-notes").val(visits[index].fourthNotes);
+        }
+    }
+
+
+    //Home
+$(".home").on("click",function(){
+    $(".add-data").addClass("hide");
+    $(".show-data").addClass("hide");
+    $(".card").addClass("hide");
+    $(".add").show();
+    $(".old").show();
+    $(".accordion").addClass("hide");
+})
+})
+
+
+
 console.log(personalInfo);
 console.log(history);
 console.log(visits);
-
