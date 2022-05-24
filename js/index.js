@@ -34,7 +34,7 @@ $(".home").on("click",function(){
     $("textarea").val("");
         $("input[type='text']").val("");
         $(".history-container").addClass("hide");
-    // $(".the-check").addClass("hide");
+    
 })
 
 
@@ -49,7 +49,6 @@ function addInfo(){
         $(info).appendTo(infoContainer);
         $(info).addClass("info-style");
         $(infoContainer).addClass("info-container");
-        // $(".info-container").addClass("hide");
         $(infoContainer).prependTo(".card-body");
         $(".info-style").eq(0).text("Name: "+$("#input-name").val());
         $(".info-style").eq(1).text("Age: "+$("#input-age").val());
@@ -67,12 +66,9 @@ function historyInfo(){
     
     $(historyContainer).prependTo(".card-body");
     $(historyContainer).addClass("history-container");
-    // $(".history-container").addClass("hide");
     for(let index=0;index<4;index++){
         let container=document.createElement("div");
         let diseases=document.createElement("h6");
-        // let checkContainer=document.createElement("div");
-
         let commentsCont=document.createElement("div");
         let historyComments=document.createElement("textarea");
         let checkContainer=document.createElement("div");
@@ -80,33 +76,8 @@ function historyInfo(){
         $(diseases).appendTo(container).addClass("diseases");
         $(historyComments).appendTo(commentsCont).addClass("comments-field");
         $(commentsCont).appendTo(container).addClass("comments-container");
-        // $(checkContainer).appendTo(container).addClass("check-cont");
         $(container).appendTo(historyContainer).addClass("diseases-cont");
         $(checkContainer).appendTo($(".diseases-cont").eq(index)).addClass("check-cont");
-        // for(let x=0;x<2;x++){
-        //     let checkField=document.createElement("input");
-        //     let checkLabel=document.createElement("label");
-        //     $(checkField).appendTo(checkContainer);
-        //     $(checkLabel).appendTo(checkContainer);
-        //     checkField.type="radio";
-        //     $(checkField).addClass('check-field');
-            
-        //     $(checkLabel).addClass("label");
-        //     $(checkContainer).children().eq(1).text("Yes");
-        //     $(checkContainer).children().eq(3).text("No");
-        //     $(checkContainer).children().eq(0).val("Yes").attr("name",history.length+index);
-        //     $(checkContainer).children().eq(2).val("No").attr("name",history.length+index);
-            
-        //     $(checkField).on('click',function(){
-        //         $(this).attr("checked",true);
-        //         $(this).siblings("input[type='radio']").attr("checked",false);
-        //         $(this).parent().attr("value",$(this).val());
-        //         console.log($(this).val());
-
-        //     })
-            
-           
-        // }
         $(".diseases").eq(0).text("Diabetic Patient :");
         $(".diseases").eq(1).text("Hypertensive patient :");
         $(".diseases").eq(2).text("Hepatic patient :");
@@ -115,10 +86,11 @@ function historyInfo(){
 }
 historyInfo();
 
+
+
+//Get Diseases History
 function fillDiseasesHistory(){
     for (let x=0;x<4;x++){
-        // let checkContainer=document.createElement("div");
-        // $(checkContainer).appendTo($(".diseases-cont").eq(x)).addClass("check-cont");
         for(let i=0;i<2;i++){
             let checkField=document.createElement("input");
             let checkLabel=document.createElement("label");
@@ -158,7 +130,6 @@ $(".add-patient").on("click",function(){
     $(".history-container").addClass("hide");
     $(".add-data").toggleClass("hide");
      $(".card").toggleClass("hide");
-    //  $(".the-check").addClass("hide");
     $('.visits-info').addClass("hide");
     $(".card-data li button").addClass("info-buttons");
     $(".info").toggleClass("clicked");
@@ -172,26 +143,6 @@ $(".add-patient").on("click",function(){
         $(".edit-button").removeClass("hide");
        
   
-
-//Diseases history
-// $(".history").on("click",function(){
-//     $(this).toggleClass("clicked");
-//     $(".info-container").addClass("hide");
-//     // $("div[class='check-cont']").empty();
-//     $("input[class='check-field']").removeClass("hide");
-//     $("label[class='label']").show();
-//     $("p[class='the-check']").hide();
-//     $(".history-container").removeClass("hide");
-//     $(".the-check").addClass("hide");
-//     $(".info ,.visits ,.endo").removeClass("clicked");
-//     $(".history").addClass("clicked");
-//     $(".accordion").addClass("hide");
-//     $(".save-button").addClass("hide");
-//     $(".edit-button").addClass("hide");
-//     $('.visits-info').addClass("hide");
-    
-// });
-
 
     //Home
 $(".home").on("click",function(){
@@ -424,6 +375,8 @@ $(".search").on("click",function(){
     })
 })
 
+
+//History
 $(".history").on("click",function(){
     $(this).toggleClass("clicked");
     $(".info-container").addClass("hide");
@@ -433,15 +386,6 @@ $(".history").on("click",function(){
     $(".accordion").addClass("hide");
     $(".save-button").addClass("hide");
     $(".edit-button").addClass("hide");
-// if($(".add-patient").is("clicked")){
-//     $("input[class='check-field']").show();
-//     $("label[class='label']").show();
-//     $("p[class='the-check']").hide();
-// }if($(".search").is("clicked")){
-//     $("input[class='check-field']").hide();
-//     $("label[class='label']").hide();
-//     $("p[class='the-check']").show();
-// }
 });
 
 
