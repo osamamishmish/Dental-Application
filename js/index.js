@@ -6,9 +6,10 @@ let visits=[];
     
     
    
-$(".save-button").addClass("hide");
+$(".save-button").hide();
 $(".edit-button").addClass("hide");
 $(".accordion").addClass("hide");
+$(".save-old").hide();
 $(function(){
     $(".add").on("click",function(){
         $(".add-data").removeClass("hide");
@@ -126,6 +127,8 @@ let index=0;
 $(".add-patient").on("click",function(){
     $("div[class='check-cont']").empty();
     fillDiseasesHistory();
+    $(".save-button").show();
+    $(".save-old").hide();
     $(".add").addClass("hide");
     $(".history-container").addClass("hide");
     $(".add-data").toggleClass("hide");
@@ -155,6 +158,7 @@ $(".home").on("click",function(){
     $('.visits-info').addClass("hide");
     $(".history-container").addClass("hide");
     
+    
 })
    
 })
@@ -168,8 +172,6 @@ $(".info").on("click",function(){
     $(".history-container").addClass("hide");
     $(".info-container").removeClass("hide");
     $(".accordion").addClass("hide");
-    $(".save-button").addClass("hide");
-    $(".edit-button").removeClass("hide");
     $('.visits-info').addClass("hide");
 })
 
@@ -183,8 +185,6 @@ $(".visits").on("click",function(){
     $(".info-container").addClass("hide");
     $(".info ,.history , .endo").removeClass("clicked");
     $(".accordion").removeClass("hide");
-    $(".save-button").addClass("hide");
-    $(".edit-button").addClass("hide");
     $('.visits-info').removeClass("hide");
 })
 
@@ -192,23 +192,12 @@ $(".visits").on("click",function(){
 //Endo
 $(".endo").on("click",function(){
     $(this).toggleClass("clicked");
-    $(".save-button").removeClass("hide");
     $('.history-container').addClass("hide");
     $(".info-container").addClass("hide");
     $(".accordion").addClass("hide");
     $(".info ,.history , .visits").removeClass("clicked");
-    $(".edit-button").addClass("hide");
     $('.visits-info').addClass("hide");
 });
-
-
-
-//Edit Info
-$(".edit-button").on("click",function(){
-    $(".add-data").toggleClass("hide");
-     $(".card").toggleClass("hide");
-})
-
 
 
 
@@ -265,7 +254,7 @@ $(".old").on("click",function(){
      $(".add").removeClass("hide");
      $("textarea").val("");
         $("input[type='text']").val("");
-    //  $(".the-check").addClass("hide");
+    
 });
 
 
@@ -280,7 +269,7 @@ function historyCheck(){
 }
 
 
-
+let theIndex;
 
 //Get patient info
 $(".search").on("click",function(){
@@ -288,6 +277,9 @@ $(".search").on("click",function(){
     historyCheck();
     for(let index=0 ; index<personalInfo.length ; index++){
         if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
+            theIndex=index;
+            $(".save-old").show();
+            $(".save-button").hide();
             $(".card").removeClass('hide');
             $(".info").addClass("clicked");
             $(".history ,.visits ,.endo").removeClass("clicked");
@@ -345,8 +337,8 @@ $(".search").on("click",function(){
                 $(".the-check").eq(3).text("No");
             }
             
-        
-
+       
+            
 
 
         }  
@@ -361,7 +353,7 @@ $(".search").on("click",function(){
         $('.visits-info').addClass("hide");
         $("textarea").val("");
         $("input[type='text']").val("");
-        // $(".the-check").addClass("hide");
+        
     })
     $(".add").on('click',function(){
         $(".card").addClass("hide");
@@ -376,6 +368,10 @@ $(".search").on("click",function(){
 })
 
 
+
+
+
+
 //History
 $(".history").on("click",function(){
     $(this).toggleClass("clicked");
@@ -384,9 +380,33 @@ $(".history").on("click",function(){
     
     $(".info ,.visits ,.endo").removeClass("clicked");
     $(".accordion").addClass("hide");
-    $(".save-button").addClass("hide");
-    $(".edit-button").addClass("hide");
+   
 });
+
+
+
+//Edit old data
+$(".save-old").on("click",function(){
+    $(".card").addClass("hide");
+    $(this).addClass("hide");
+    $(".show-data").toggleClass("hide");
+    
+    history[theIndex].DiabeticComment=$(".comments-container textarea").eq(0).val();
+    history[theIndex].HypertensiveComment=$(".comments-container textarea").eq(1).val();
+    history[theIndex].HepaticComment=$(".comments-container textarea").eq(2).val();
+    history[theIndex].GlandComment=$(".comments-container textarea").eq(3).val();
+    visits[theIndex].firstDate=$(".first-date").val();
+    visits[theIndex].firstNotes=$(".first-notes").val();
+    visits[theIndex].secondDate=$(".second-date").val();
+    visits[theIndex].secondNotes=$(".second-notes").val();
+    visits[theIndex].thirdDate=$(".third-date").val();
+    visits[theIndex].thirdNotes=$(".third-notes").val();
+    visits[theIndex].fourthDate=$(".fourth-date").val();
+    visits[theIndex].fourthNotes=$(".fourth-notes").val();
+    theIndex="";
+    $("input[type='text']").val("");
+    $("textarea").val("");
+})
 
 
 console.log(personalInfo);
