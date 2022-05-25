@@ -2,14 +2,17 @@
 let personalInfo=[];
 let history=[];
 let visits=[];
-
-    
+let work=[];
+let opertive=["Composite","Amalgum","Glass ionmer"];    
     
    
 $(".save-button").hide();
 $(".edit-button").addClass("hide");
 $(".accordion").addClass("hide");
 $(".save-old").hide();
+$(".categories").hide();
+$(".opertive-container").hide();
+
 $(function(){
     $(".add").on("click",function(){
         $(".add-data").removeClass("hide");
@@ -17,6 +20,9 @@ $(function(){
         $(".old").removeClass("hide");
         $("textarea").val("");
         $("input[type='text']").val("");
+        $(".categories").hide();
+        $(".opertive-container").hide();
+
         
     });
     
@@ -35,6 +41,8 @@ $(".home").on("click",function(){
     $("textarea").val("");
         $("input[type='text']").val("");
         $(".history-container").addClass("hide");
+        $(".categories").hide();
+        $(".opertive-container").hide();
     
 })
 
@@ -136,14 +144,16 @@ $(".add-patient").on("click",function(){
     $('.visits-info').addClass("hide");
     $(".card-data li button").addClass("info-buttons");
     $(".info").toggleClass("clicked");
-    $(".history , .visits , .endo").removeClass("clicked");
+    $(".history , .visits , .work").removeClass("clicked");
     $(".info-container").removeClass("hide");
+    $(".categories").hide();
+    $(".category-parent").hide();
     $(".info-style").eq(0).text("Name: "+$("#input-name").val());
         $(".info-style").eq(1).text("Age: "+$("#input-age").val());
         $(".info-style").eq(2).text("Gender: "+$("#input-gender").val());
         $(".info-style").eq(3).text("Date: "+$("#input-date").val());
         $(".info-style").eq(4).text("Phone Number: "+$("#input-phone").val());
-        $(".edit-button").removeClass("hide");
+        
        
   
 
@@ -157,6 +167,8 @@ $(".home").on("click",function(){
     $(".accordion").addClass("hide");
     $('.visits-info').addClass("hide");
     $(".history-container").addClass("hide");
+    $(".categories").hide();
+    $(".opertive-container").hide();
     
     
 })
@@ -168,14 +180,15 @@ $(".home").on("click",function(){
 $(".info").on("click",function(){
     $(this).removeClass("hide");
     $(this).toggleClass("clicked");
-    $(".history ,.visits").removeClass("clicked");
+    $(".history ,.visits ,.work").removeClass("clicked");
     $(".history-container").addClass("hide");
     $(".info-container").removeClass("hide");
     $(".accordion").addClass("hide");
     $('.visits-info').addClass("hide");
-})
+    $(".categories").hide();
+    $(".opertive-container").hide();
 
-
+});
 
 
 //Visits
@@ -183,22 +196,27 @@ $(".visits").on("click",function(){
     $(this).toggleClass("clicked");
     $('.history-container').addClass("hide");
     $(".info-container").addClass("hide");
-    $(".info ,.history , .endo").removeClass("clicked");
+    $(".info ,.history , .work").removeClass("clicked");
     $(".accordion").removeClass("hide");
     $('.visits-info').removeClass("hide");
+    $(".categories").hide();
+    $(".opertive-container").hide();
 })
 
 
-//Endo
-$(".endo").on("click",function(){
+//work
+$(".work").on("click",function(){
     $(this).toggleClass("clicked");
     $('.history-container').addClass("hide");
     $(".info-container").addClass("hide");
     $(".accordion").addClass("hide");
     $(".info ,.history , .visits").removeClass("clicked");
     $('.visits-info').addClass("hide");
-});
+    $(".categories").show();
+    $(".opertive-container").hide();
+    
 
+})
 
 
 //save Data
@@ -207,6 +225,7 @@ $(".save-button").on("click",function(){
     $(this).addClass("hide");
     $(".add-data").toggleClass("hide");
     $(".card").toggleClass("hide");
+    $(".opertive-container").hide();
     personalInfo.push({
         name:$("#input-name").val(),
         age:$("#input-age").val(),
@@ -237,9 +256,27 @@ $(".save-button").on("click",function(){
         fourthNotes:$(".fourth-notes").val()
         
     });
+    work.push({
+        OpertiveStatus:$(".check-box").eq(0).attr("checked"),
+        EndodonticTreatmentStatus:$(".check-box").eq(1).attr("checked"),
+        PostCoreStatus:$(".check-box").eq(2).attr("checked"),
+        CrownStatus:$(".check-box").eq(3).attr("checked"),
+        RemovableStatus:$(".check-box").eq(4).attr("checked"),
+        ImplantStatus:$(".check-box").eq(5).attr("checked"),
+        ExtractionStatus:$(".check-box").eq(6).attr("checked"),
+        PeudoStatus:$(".check-box").eq(7).attr("checked"),
+        ScalingPolishingStatus:$(".check-box").eq(8).attr("checked"),
+        OrthoDonticsStatus:$(".check-box").eq(9).attr("checked")
+        
+    });
     $("input[type='text']").val("");
     $("textarea").val("");
    
+        $("input[class='check-box']").attr("checked",false);
+        let theCheck=document.querySelectorAll(".check-box");
+        for(let i=0;i<$("input[class='check-box']").length;i++){
+            theCheck[i].checked=false;
+        }
 })
 
 
@@ -254,6 +291,8 @@ $(".old").on("click",function(){
      $(".add").removeClass("hide");
      $("textarea").val("");
         $("input[type='text']").val("");
+        $(".opertive-container").hide();
+        
     
 });
 
@@ -282,9 +321,11 @@ $(".search").on("click",function(){
             $(".save-button").hide();
             $(".card").removeClass('hide');
             $(".info").addClass("clicked");
-            $(".history ,.visits ,.endo").removeClass("clicked");
+            $(".history ,.visits ,.work").removeClass("clicked");
             $(".history-container").addClass("hide");
+            $(".categories").hide();
             $(".info-container").removeClass("hide");
+            $(".opertive-container").hide();
             $(".accordion").addClass("hide");
             $(".save-button").addClass("hide");
             $(".edit-button").removeClass("hide");
@@ -353,6 +394,8 @@ $(".search").on("click",function(){
         $('.visits-info').addClass("hide");
         $("textarea").val("");
         $("input[type='text']").val("");
+        $(".opertive-container").hide();
+        
         
     })
     $(".add").on('click',function(){
@@ -362,6 +405,7 @@ $(".search").on("click",function(){
             $(".old").removeClass("hide");
             $("textarea").val("");
         $("input[type='text']").val("");
+        $(".opertive-container").hide();
         
     
     })
@@ -378,8 +422,11 @@ $(".history").on("click",function(){
     $(".info-container").addClass("hide");
     $(".history-container").removeClass("hide");
     
-    $(".info ,.visits ,.endo").removeClass("clicked");
+    $(".info ,.visits ,.work").removeClass("clicked");
     $(".accordion").addClass("hide");
+    $(".categories").hide();
+    $(".opertive-container").hide();
+
    
 });
 
@@ -389,6 +436,7 @@ $(".history").on("click",function(){
 $(".save-old").on("click",function(){
     $(".card").addClass("hide");
     $(this).addClass("hide");
+
     $(".show-data").toggleClass("hide");
     
     history[theIndex].DiabeticComment=$(".comments-container textarea").eq(0).val();
@@ -408,7 +456,51 @@ $(".save-old").on("click",function(){
     $("textarea").val("");
 })
 
+//Opertive Categories
+function opertiveCategories(){
+
+    
+    for(let index =0 ;index<opertive.length;index++){
+        let opertiveCategories=document.createElement("h5"),
+            categoriesChecking=document.createElement("input"),
+            line=document.createElement("hr"),
+             container=document.createElement("div"),
+            categoriesContainer=document.createElement("div");
+        $(opertiveCategories).appendTo(categoriesContainer).addClass("opertive-cont").text(opertive[index]);
+        $(categoriesChecking).appendTo(categoriesContainer).addClass("opertive-check").attr("type","checkbox");
+         $(line).addClass("horizontal");
+        $(".opertive-container").append(categoriesContainer);
+        $(".opertive-container").append(line);  
+         $(categoriesContainer).addClass("category-parent").show();
+
+    }
+};
+opertiveCategories();
+
+
+//show opertive categories
+$('.opertive').on("click",function(){
+    $(".categories").hide();
+    $(".opertive-container").show();
+    $(".category-parent").show();
+});
+
+
+$(document).ready(function(){
+    $('input[type="checkbox"]').click(function(){
+        if(this.checked){
+            $(this).attr("checked",true);
+        }
+        else if(!(this.checked)){
+            $(this).attr("checked",false);
+        }
+    });
+});
+
+
+
 
 console.log(personalInfo);
 console.log(history);
 console.log(visits);
+console.log(work);
