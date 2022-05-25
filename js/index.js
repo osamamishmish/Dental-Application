@@ -3,8 +3,13 @@ let personalInfo=[];
 let history=[];
 let visits=[];
 let work=[];
-let opertive=["Composite","Amalgum","Glass ionmer"];    
-    
+let opertive=["Composite","Amalgum","Glass ionmer"];  
+let postCore=["fiberPost","metalPost","custom made post"];
+let crown=["primary impression","reduction","secondary impression","try in","cementation"];
+let removable=["partial","complete"];
+let peudo=["pulptomy","pulpectomy"];
+let orthoDontics=["upper arch","lower arch","Both arches"];  
+let opertiveWork=[];
    
 $(".save-button").hide();
 $(".edit-button").addClass("hide");
@@ -269,13 +274,22 @@ $(".save-button").on("click",function(){
         OrthoDonticsStatus:$(".check-box").eq(9).attr("checked")
         
     });
+    opertiveWork.push({
+        composite:$(".opertive-check").eq(0).attr("checked"),
+        amalgum:$(".opertive-check").eq(1).attr("checked"),
+        glassIonmers:$(".opertive-check").eq(2).attr("checked")
+    })
     $("input[type='text']").val("");
     $("textarea").val("");
    
         $("input[class='check-box']").attr("checked",false);
         let theCheck=document.querySelectorAll(".check-box");
+        let theOpertiveCheck=document.querySelectorAll(".opertive-check");
         for(let i=0;i<$("input[class='check-box']").length;i++){
             theCheck[i].checked=false;
+        }
+        for(let x=0;x<$("input[class='opertive-check']").length;x++){
+            theOpertiveCheck[x].checked=false;
         }
 })
 
@@ -456,15 +470,15 @@ $(".save-old").on("click",function(){
     $("textarea").val("");
 })
 
+
+
+
 //Opertive Categories
 function opertiveCategories(){
-
-    
     for(let index =0 ;index<opertive.length;index++){
         let opertiveCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
             line=document.createElement("hr"),
-             container=document.createElement("div"),
             categoriesContainer=document.createElement("div");
         $(opertiveCategories).appendTo(categoriesContainer).addClass("opertive-cont").text(opertive[index]);
         $(categoriesChecking).appendTo(categoriesContainer).addClass("opertive-check").attr("type","checkbox");
@@ -476,6 +490,9 @@ function opertiveCategories(){
     }
 };
 opertiveCategories();
+
+
+
 
 
 //show opertive categories
@@ -504,3 +521,4 @@ console.log(personalInfo);
 console.log(history);
 console.log(visits);
 console.log(work);
+console.log(opertiveWork);
