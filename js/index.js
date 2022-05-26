@@ -230,7 +230,7 @@ $(".save-button").on("click",function(){
     $(this).addClass("hide");
     $(".add-data").toggleClass("hide");
     $(".card").toggleClass("hide");
-    $(".opertive-container").hide();
+    
     personalInfo.push({
         name:$("#input-name").val(),
         age:$("#input-age").val(),
@@ -282,7 +282,7 @@ $(".save-button").on("click",function(){
     $("input[type='text']").val("");
     $("textarea").val("");
    
-        $("input[class='check-box']").attr("checked",false);
+        $("input[type='checkbox']").attr("checked",false);
         let theCheck=document.querySelectorAll(".check-box");
         let theOpertiveCheck=document.querySelectorAll(".opertive-check");
         for(let i=0;i<$("input[class='check-box']").length;i++){
@@ -291,6 +291,8 @@ $(".save-button").on("click",function(){
         for(let x=0;x<$("input[class='opertive-check']").length;x++){
             theOpertiveCheck[x].checked=false;
         }
+        $(".opertive-container").hide();
+    $(".opertive-conatainer").empty();
 })
 
 
@@ -305,6 +307,7 @@ $(".old").on("click",function(){
      $(".add").removeClass("hide");
      $("textarea").val("");
         $("input[type='text']").val("");
+        $(".opertive-container").empty();
         $(".opertive-container").hide();
         
     
@@ -346,7 +349,7 @@ $(".search").on("click",function(){
             $(".show-data").addClass("hide");
             
 
-            //PersonalInfo
+            
             $(".info-style").eq(0).text("Name :"+personalInfo[index].name);
             $(".info-style").eq(1).text("Age :"+personalInfo[index].age);
             $(".info-style").eq(2).text("Gender :"+personalInfo[index].gender);
@@ -364,11 +367,6 @@ $(".search").on("click",function(){
             $(".third-notes").val(visits[index].thirdNotes);
             $(".fourth-date").val(visits[index].fourthDate);
             $(".fourth-notes").val(visits[index].fourthNotes);
-
-            
-
-        
-            
             
             if(history[index].Diabetic=="Yes"){
                 $(".the-check").eq(0).text("Yes");
@@ -391,8 +389,80 @@ $(".search").on("click",function(){
             }else{
                 $(".the-check").eq(3).text("No");
             }
-            
-       
+
+            //All categories
+            let categories=document.querySelectorAll(".check-box");
+            if(work[index].OpertiveStatus=="checked"){
+                categories[0].checked=true;
+            }else{
+                categories[0].checked=false;
+            }
+            if(work[index].EndodonticTreatmentStatus=="checked"){
+                categories[1].checked=true;
+            }else{
+                categories[1].checked=false;
+            }
+            if(work[index].PostCoreStatus=="checked"){
+                categories[2].checked=true;
+            }else{
+                categories[2].checked=false;
+            }
+            if(work[index].CrownStatus=="checked"){
+                categories[3].checked=true;
+            }else{
+                categories[3].checked=false;
+            }
+            if(work[index].RemovableStatus=="checked"){
+                categories[4].checked=true;
+            }else{
+                categories[4].checked=false;
+            }
+            if(work[index].ImplantStatus=="checked"){
+                categories[5].checked=true;
+            }else{
+                categories[5].checked=false;
+            }
+            if(work[index].ExtractionStatus=="checked"){
+                categories[6].checked=true;
+            }else{
+                categories[6].checked=false;
+            }
+            if(work[index].PeudoStatus=="checked"){
+                categories[7].checked=true;
+            }else{
+                categories[7].checked=false;
+            }
+            if(work[index].ScalingPolishingStatus=="checked"){
+                categories[8].checked=true;
+            }else{
+                categories[8].checked=false;
+            }
+            if(work[index].OrthoDonticsStatus=="checked"){
+                categories[9].checked=true;
+            }else{
+                categories[9].checked=false;
+            }
+
+
+
+
+            //opertive categories
+          let opertiveCheck=document.querySelectorAll(".opertive-check");  
+       if(opertiveWork[index].composite=="checked"){
+        opertiveCheck[0].checked=true;
+       }else{
+         opertiveCheck[0].checked=false;
+       }
+       if(opertiveWork[index].amalgum=="checked"){
+         opertiveCheck[1].checked=true;
+        }else{
+          opertiveCheck[1].checked=false;
+        }
+        if(opertiveWork[index].glassIonmers=="checked"){
+            opertiveCheck[2].checked=true;
+           }else{
+             opertiveCheck[2].checked=false;
+           }
             
 
 
@@ -408,6 +478,7 @@ $(".search").on("click",function(){
         $('.visits-info').addClass("hide");
         $("textarea").val("");
         $("input[type='text']").val("");
+        $(".opertive-container").empty();
         $(".opertive-container").hide();
         
         
@@ -419,6 +490,7 @@ $(".search").on("click",function(){
             $(".old").removeClass("hide");
             $("textarea").val("");
         $("input[type='text']").val("");
+        $(".opertive-container").empty();
         $(".opertive-container").hide();
         
     
@@ -465,6 +537,21 @@ $(".save-old").on("click",function(){
     visits[theIndex].thirdNotes=$(".third-notes").val();
     visits[theIndex].fourthDate=$(".fourth-date").val();
     visits[theIndex].fourthNotes=$(".fourth-notes").val();
+    work[theIndex].OpertiveStatus=$(".check-box").eq(0).attr("checked");
+    work[theIndex].EndodonticTreatmentStatus=$(".check-box").eq(1).attr("checked");
+    work[theIndex].PostCoreStatus=$(".check-box").eq(2).attr("checked");
+    work[theIndex].CrownStatus=$(".check-box").eq(3).attr("checked");
+    work[theIndex].RemovableStatus=$(".check-box").eq(4).attr("checked");
+    work[theIndex].ImplantStatus=$(".check-box").eq(5).attr("checked");
+    work[theIndex].ExtractionStatus=$(".check-box").eq(6).attr("checked");
+    work[theIndex].PeudoStatus=$(".check-box").eq(7).attr("checked");
+    work[theIndex].ScalingPolishingStatus=$(".check-box").eq(8).attr("checked");
+    work[theIndex].OrthoDonticsStatus=$(".check-box").eq(9).attr("checked");
+    
+    opertiveWork[theIndex].composite=$(".opertive-check").eq(0).attr("checked");
+    opertiveWork[theIndex].amalgum=$(".opertive-check").eq(1).attr("checked");
+    opertiveWork[theIndex].glassIonmers=$(".opertive-check").eq(2).attr("checked");
+    
     theIndex="";
     $("input[type='text']").val("");
     $("textarea").val("");
@@ -489,14 +576,15 @@ function opertiveCategories(){
 
     }
 };
-opertiveCategories();
 
+opertiveCategories();
 
 
 
 
 //show opertive categories
 $('.opertive').on("click",function(){
+    
     $(".categories").hide();
     $(".opertive-container").show();
     $(".category-parent").show();
