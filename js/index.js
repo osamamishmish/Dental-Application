@@ -10,25 +10,19 @@ let removable=["partial","complete"];
 let peudo=["pulptomy","pulpectomy"];
 let orthoDontics=["upper arch","lower arch","Both arches"];  
 let opertiveWork=[];
-   
-$(".save-button").hide();
-$(".edit-button").addClass("hide");
-$(".accordion").addClass("hide");
-$(".save-old").hide();
-$(".categories").hide();
-$(".opertive-container").hide();
+ 
+
+$(".save-button , .save-old , .categories , .opertive-container").hide();
+$(".edit-button , .accordion").addClass("hide");
+
 
 $(function(){
     $(".add").on("click",function(){
-        $(".add-data").removeClass("hide");
+        $(".add-data ,.old").removeClass("hide");
         $(".show-data").addClass("hide");
-        $(".old").removeClass("hide");
         $("textarea").val("");
         $("input[type='text']").val("");
-        $(".categories").hide();
-        $(".opertive-container").hide();
-
-        
+        $(".categories , .opertive-container").hide();
     });
     
 })
@@ -37,42 +31,48 @@ $(function(){
 
 //Home
 $(".home").on("click",function(){
-    $(".add-data").addClass("hide");
-    $(".show-data").addClass("hide");
-    $(".card").addClass("hide");
-    $(".add").show();
-    $(".old").show();
-    $(".accordion").addClass("hide");
+    $(".add-data, .show-data , .card , .accordion , .history-container , .visits-info , .history-container").addClass("hide");
+    $(".add , .old").show();
     $("textarea").val("");
-        $("input[type='text']").val("");
-        $(".history-container").addClass("hide");
-        $(".categories").hide();
-        $(".opertive-container").hide();
-    
+    $("input[type='text']").val("");
+    $(".categories , .opertive-container ").hide();
 })
 
 
 
-
+let formCategories=["Name","Age","Gender","Date","Phone Number"];
+let formInputs=[
+    $("#input-name").val(),
+    $("#input-age").val(),
+    $("#input-gender").val(),
+    $("#input-date").val(),
+    $("#input-phone").val()
+];
 
 //Add personal Information
 function addInfo(){
-    for (let index=0;index<5;index++){
+    for (let index=0;index<formCategories.length;index++){
         let info=document.createElement("h5");
         let infoContainer=document.createElement('div');
         $(info).appendTo(infoContainer);
         $(info).addClass("info-style");
         $(infoContainer).addClass("info-container");
         $(infoContainer).prependTo(".card-body");
-        $(".info-style").eq(0).text("Name: "+$("#input-name").val());
-        $(".info-style").eq(1).text("Age: "+$("#input-age").val());
-        $(".info-style").eq(2).text("Gender: "+$("#input-gender").val());
-        $(".info-style").eq(3).text("Date: "+$("#input-date").val());
-        $(".info-style").eq(4).text("Phone Number: "+$("#input-phone").val());
-
+        $(".info-style").eq(index).text(formCategories[index]+": "+formInputs[index]);
     }
 }
 addInfo();
+
+
+
+
+
+let diseasesName=[
+    "Diabetic Patient",
+    "Hypertensive patient",
+    "Hepatic patient",
+    "Gland disease"
+];
 
 //Add diseases history
 function historyInfo(){
@@ -92,10 +92,7 @@ function historyInfo(){
         $(commentsCont).appendTo(container).addClass("comments-container");
         $(container).appendTo(historyContainer).addClass("diseases-cont");
         $(checkContainer).appendTo($(".diseases-cont").eq(index)).addClass("check-cont");
-        $(".diseases").eq(0).text("Diabetic Patient :");
-        $(".diseases").eq(1).text("Hypertensive patient :");
-        $(".diseases").eq(2).text("Hepatic patient :");
-        $(".diseases").eq(3).text("Gland disease :");
+        $(".diseases").eq(index).text(diseasesName[index]);
     }
 }
 historyInfo();
@@ -141,44 +138,19 @@ $(".add-patient").on("click",function(){
     $("div[class='check-cont']").empty();
     fillDiseasesHistory();
     $(".save-button").show();
-    $(".save-old").hide();
-    $(".add").addClass("hide");
-    $(".history-container").addClass("hide");
-    $(".add-data").toggleClass("hide");
-     $(".card").toggleClass("hide");
-    $('.visits-info').addClass("hide");
+    $(".save-old , .categories , .category-parent").hide();
+    $(".add , .history-container ,.visits-info").addClass("hide");
+    $(".add-data , .card").toggleClass("hide");
     $(".card-data li button").addClass("info-buttons");
     $(".info").toggleClass("clicked");
     $(".history , .visits , .work").removeClass("clicked");
     $(".info-container").removeClass("hide");
-    $(".categories").hide();
-    $(".category-parent").hide();
     $(".info-style").eq(0).text("Name: "+$("#input-name").val());
         $(".info-style").eq(1).text("Age: "+$("#input-age").val());
         $(".info-style").eq(2).text("Gender: "+$("#input-gender").val());
         $(".info-style").eq(3).text("Date: "+$("#input-date").val());
         $(".info-style").eq(4).text("Phone Number: "+$("#input-phone").val());
-        
-       
-  
-
-    //Home
-$(".home").on("click",function(){
-    $(".add-data").addClass("hide");
-    $(".show-data").addClass("hide");
-    $(".card").addClass("hide");
-    $(".add").show();
-    $(".old").show();
-    $(".accordion").addClass("hide");
-    $('.visits-info').addClass("hide");
-    $(".history-container").addClass("hide");
-    $(".categories").hide();
-    $(".opertive-container").hide();
-    
-    
-})
-   
-})
+});
 
 
 //Personal Info
@@ -186,42 +158,30 @@ $(".info").on("click",function(){
     $(this).removeClass("hide");
     $(this).toggleClass("clicked");
     $(".history ,.visits ,.work").removeClass("clicked");
-    $(".history-container").addClass("hide");
+    $(".history-container ,.accordion ,.visits-info").addClass("hide");
     $(".info-container").removeClass("hide");
-    $(".accordion").addClass("hide");
-    $('.visits-info').addClass("hide");
-    $(".categories").hide();
-    $(".opertive-container").hide();
-
+    $(".categories ,.opertive-container").hide();
 });
 
 
 //Visits
 $(".visits").on("click",function(){
     $(this).toggleClass("clicked");
-    $('.history-container').addClass("hide");
-    $(".info-container").addClass("hide");
+    $('.history-container ,.info-container').addClass("hide");
     $(".info ,.history , .work").removeClass("clicked");
-    $(".accordion").removeClass("hide");
-    $('.visits-info').removeClass("hide");
-    $(".categories").hide();
-    $(".opertive-container").hide();
+    $(".accordion ,.visits-info").removeClass("hide");
+    $(".categories ,.opertive-container").hide();
 })
 
 
 //work
 $(".work").on("click",function(){
     $(this).toggleClass("clicked");
-    $('.history-container').addClass("hide");
-    $(".info-container").addClass("hide");
-    $(".accordion").addClass("hide");
+    $('.history-container ,.info-container ,.accordion ,.visits-info').addClass("hide");
     $(".info ,.history , .visits").removeClass("clicked");
-    $('.visits-info').addClass("hide");
     $(".categories").show();
     $(".opertive-container").hide();
-    
-
-})
+});
 
 
 //save Data
