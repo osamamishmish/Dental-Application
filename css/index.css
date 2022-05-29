@@ -113,6 +113,7 @@ ul li{
     display:flex;
     flex-flow:column;
     justify-content:flex-start;
+    border-right:1px solid black;
 }
 .check{
     display:flex;
@@ -160,6 +161,9 @@ ul li{
     width:100%;
     color:black;
 
+}
+.save-button{
+    margin-top:10px;
 }
 
 

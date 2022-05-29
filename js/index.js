@@ -3,6 +3,18 @@ let personalInfo=[];
 let history=[];
 let visits=[];
 let work=[];
+let workStatus=[
+    "Opertive",
+    "Endodontic Treatment",
+    "Post & Core",
+    "Crown",
+    "Removable",
+    "Implant",
+    "Extraction",
+    "Peudo",
+    "Scaling & Polishing",
+    "Orthodontics"
+];
 let opertive=["Composite","Amalgum","Glass ionmer"];  
 let postCore=["fiberPost","metalPost","custom made post"];
 let crown=["primary impression","reduction","secondary impression","try in","cementation"];
@@ -10,19 +22,24 @@ let removable=["partial","complete"];
 let peudo=["pulptomy","pulpectomy"];
 let orthoDontics=["upper arch","lower arch","Both arches"];  
 let opertiveWork=[];
+
  
 
 $(".save-button , .save-old , .categories , .opertive-container").hide();
 $(".edit-button , .accordion").addClass("hide");
 
 
+
+//Add new Data
 $(function(){
     $(".add").on("click",function(){
         $(".add-data ,.old").removeClass("hide");
-        $(".show-data").addClass("hide");
+        $(".show-data ,.card").addClass("hide");
         $("textarea").val("");
         $("input[type='text']").val("");
+        
         $(".categories , .opertive-container").hide();
+       
     });
     
 })
@@ -36,6 +53,7 @@ $(".home").on("click",function(){
     $("textarea").val("");
     $("input[type='text']").val("");
     $(".categories , .opertive-container ").hide();
+    
 })
 
 
@@ -130,15 +148,62 @@ function fillDiseasesHistory(){
 }
 
 
-let index=0;
+let categoryClass=[
+    "opertive",
+    "endo",
+    "post-core",
+    "crown",
+    "removeble",
+    "implant",
+    "extraction",
+    "peudo",
+    "scaling-polishing",
+    "ortho"
+];
+
+function addCategories(){
+    for(let index=0 ;index<workStatus.length ; index++){
+        let container=document.createElement("div"),
+            checkBox=document.createElement("input"),
+            category=document.createElement("h5");
+        checkBox.type="checkbox";
+        $(container).addClass("check");
+        $(checkBox).addClass("check-box").appendTo(container).on("click",function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+        $(category).addClass(categoryClass[index]).text(workStatus[index]).prependTo(container);
+        if(index<5){
+            $(container).appendTo(".first-row");
+        }else{
+            $(container).appendTo(".second-row");
+        }
+        //show opertive categories
+$('.opertive').on("click",function(){
+    
+    
+    $(".categories").hide();
+    $(".opertive-container").show();
+    $(".category-parent").show();
+});
+    }
+}
+
+
 
 
 //add new patient
 $(".add-patient").on("click",function(){
     $("div[class='check-cont']").empty();
     fillDiseasesHistory();
+    $(".first-row , .second-row").empty();
+    addCategories();
     $(".save-button").show();
-    $(".save-old , .categories , .category-parent").hide();
+    $(".save-old , .categories , .category-parent ,.opertive-container").hide();
     $(".add , .history-container ,.visits-info").addClass("hide");
     $(".add-data , .card").toggleClass("hide");
     $(".card-data li button").addClass("info-buttons");
@@ -150,6 +215,7 @@ $(".add-patient").on("click",function(){
         $(".info-style").eq(2).text("Gender: "+$("#input-gender").val());
         $(".info-style").eq(3).text("Date: "+$("#input-date").val());
         $(".info-style").eq(4).text("Phone Number: "+$("#input-phone").val());
+       
 });
 
 
@@ -184,12 +250,17 @@ $(".work").on("click",function(){
 });
 
 
+
+
+
+
 //save Data
 $(".save-button").on("click",function(){
 
     $(this).addClass("hide");
     $(".add-data").toggleClass("hide");
     $(".card").toggleClass("hide");
+    
     
     personalInfo.push({
         name:$("#input-name").val(),
@@ -221,38 +292,36 @@ $(".save-button").on("click",function(){
         fourthNotes:$(".fourth-notes").val()
         
     });
+   
     work.push({
-        OpertiveStatus:$(".check-box").eq(0).attr("checked"),
-        EndodonticTreatmentStatus:$(".check-box").eq(1).attr("checked"),
-        PostCoreStatus:$(".check-box").eq(2).attr("checked"),
-        CrownStatus:$(".check-box").eq(3).attr("checked"),
-        RemovableStatus:$(".check-box").eq(4).attr("checked"),
-        ImplantStatus:$(".check-box").eq(5).attr("checked"),
-        ExtractionStatus:$(".check-box").eq(6).attr("checked"),
-        PeudoStatus:$(".check-box").eq(7).attr("checked"),
-        ScalingPolishingStatus:$(".check-box").eq(8).attr("checked"),
-        OrthoDonticsStatus:$(".check-box").eq(9).attr("checked")
+        OpertiveStatus:$(".check").eq(0).attr("checked"),
+        EndodonticTreatmentStatus:$(".check").eq(1).attr("checked"),
+        PostCoreStatus:$(".check").eq(2).attr("checked"),
+        CrownStatus:$(".check").eq(3).attr("checked"),
+        RemovableStatus:$(".check").eq(4).attr("checked"),
+        ImplantStatus:$(".check").eq(5).attr("checked"),
+        ExtractionStatus:$(".check").eq(6).attr("checked"),
+        PeudoStatus:$(".check").eq(7).attr("checked"),
+        ScalingPolishingStatus:$(".check").eq(8).attr("checked"),
+        OrthoDonticsStatus:$(".check").eq(9).attr("checked")
         
     });
     opertiveWork.push({
-        composite:$(".opertive-check").eq(0).attr("checked"),
-        amalgum:$(".opertive-check").eq(1).attr("checked"),
-        glassIonmers:$(".opertive-check").eq(2).attr("checked")
-    })
+        composite:$(".category-parent").eq(0).attr("checked"),
+        amalgum:$(".category-parent").eq(1).attr("checked"),
+        glassIonmers:$(".category-parent").eq(2).attr("checked")
+    });
+
     $("input[type='text']").val("");
     $("textarea").val("");
    
-        $("input[type='checkbox']").attr("checked",false);
-        let theCheck=document.querySelectorAll(".check-box");
         let theOpertiveCheck=document.querySelectorAll(".opertive-check");
-        for(let i=0;i<$("input[class='check-box']").length;i++){
-            theCheck[i].checked=false;
-        }
         for(let x=0;x<$("input[class='opertive-check']").length;x++){
             theOpertiveCheck[x].checked=false;
+            $(theOpertiveCheck).eq(x).parent().attr("checked",false);
         }
-        $(".opertive-container").hide();
-    $(".opertive-conatainer").empty();
+         $(".opertive-container").hide();
+        
 })
 
 
@@ -267,9 +336,8 @@ $(".old").on("click",function(){
      $(".add").removeClass("hide");
      $("textarea").val("");
         $("input[type='text']").val("");
-        $(".opertive-container").empty();
-        $(".opertive-container").hide();
         
+        $(".opertive-container").hide();
     
 });
 
@@ -290,10 +358,15 @@ let theIndex;
 //Get patient info
 $(".search").on("click",function(){
     $("div[class='check-cont']").empty();
+    $(".opertive-container").hide();
     historyCheck();
     for(let index=0 ; index<personalInfo.length ; index++){
         if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
             theIndex=index;
+            console.log(theIndex);
+            console.log(index);
+            $(".first-row , .second-row").empty();
+            addCategories();
             $(".save-old").show();
             $(".save-button").hide();
             $(".card").removeClass('hide');
@@ -307,7 +380,6 @@ $(".search").on("click",function(){
             $(".save-button").addClass("hide");
             $(".edit-button").removeClass("hide");
             $(".show-data").addClass("hide");
-            
 
             
             $(".info-style").eq(0).text("Name :"+personalInfo[index].name);
@@ -350,57 +422,81 @@ $(".search").on("click",function(){
                 $(".the-check").eq(3).text("No");
             }
 
+
+
             //All categories
             let categories=document.querySelectorAll(".check-box");
+            
             if(work[index].OpertiveStatus=="checked"){
                 categories[0].checked=true;
+                $(".check").eq(0).attr("checked",true);
             }else{
                 categories[0].checked=false;
+                $(".check").eq(0).attr("checked",false);
             }
+        
             if(work[index].EndodonticTreatmentStatus=="checked"){
                 categories[1].checked=true;
+                $(".check").eq(1).attr("checked",true);
             }else{
                 categories[1].checked=false;
+                $(".check").eq(1).attr("checked",false);
             }
             if(work[index].PostCoreStatus=="checked"){
                 categories[2].checked=true;
+                $(".check").eq(2).attr("checked",true);
             }else{
                 categories[2].checked=false;
+                $(".check").eq(2).attr("checked",false);
             }
             if(work[index].CrownStatus=="checked"){
                 categories[3].checked=true;
+                $(".check").eq(3).attr("checked",true);
             }else{
                 categories[3].checked=false;
+                $(".check").eq(3).attr("checked",false);
             }
             if(work[index].RemovableStatus=="checked"){
                 categories[4].checked=true;
+                $(".check").eq(4).attr("checked",true);
             }else{
                 categories[4].checked=false;
+                $(".check").eq(4).attr("checked",false);
             }
             if(work[index].ImplantStatus=="checked"){
                 categories[5].checked=true;
+                $(".check").eq(5).attr("checked",true);
             }else{
                 categories[5].checked=false;
+                $(".check").eq(5).attr("checked",false);
             }
             if(work[index].ExtractionStatus=="checked"){
                 categories[6].checked=true;
+                $(".check").eq(6).attr("checked",true);
             }else{
                 categories[6].checked=false;
+                $(".check").eq(6).attr("checked",false);
             }
             if(work[index].PeudoStatus=="checked"){
                 categories[7].checked=true;
+                $(".check").eq(7).attr("checked",true);
             }else{
                 categories[7].checked=false;
+                $(".check").eq(7).attr("checked",false);
             }
             if(work[index].ScalingPolishingStatus=="checked"){
                 categories[8].checked=true;
+                $(".check").eq(8).attr("checked",true);
             }else{
                 categories[8].checked=false;
+                $(".check").eq(8).attr("checked",false);
             }
             if(work[index].OrthoDonticsStatus=="checked"){
                 categories[9].checked=true;
+                $(".check").eq(9).attr("checked",true);
             }else{
                 categories[9].checked=false;
+                $(".check").eq(9).attr("checked",false);
             }
 
 
@@ -410,52 +506,41 @@ $(".search").on("click",function(){
           let opertiveCheck=document.querySelectorAll(".opertive-check");  
        if(opertiveWork[index].composite=="checked"){
         opertiveCheck[0].checked=true;
+        $('.category-parent').eq(0).attr("checked",true);
        }else{
          opertiveCheck[0].checked=false;
+         $('.category-parent').eq(0).attr("checked",false);
        }
        if(opertiveWork[index].amalgum=="checked"){
          opertiveCheck[1].checked=true;
+         $('.category-parent').eq(1).attr("checked",true);
         }else{
           opertiveCheck[1].checked=false;
+          $('.category-parent').eq(1).attr("checked",false);
         }
         if(opertiveWork[index].glassIonmers=="checked"){
             opertiveCheck[2].checked=true;
+            $('.category-parent').eq(2).attr("checked",true);
            }else{
              opertiveCheck[2].checked=false;
+             $('.category-parent').eq(2).attr("checked",false);
            }
             
-
-
         }  
+        
     }
-    $(".home").on("click",function(){
-        $(".add-data").addClass("hide");
-        $(".show-data").addClass("hide");
-        $(".card").addClass("hide");
-        $(".add").show();
-        $(".old").show();
-        $(".accordion").addClass("hide");
-        $('.visits-info').addClass("hide");
-        $("textarea").val("");
-        $("input[type='text']").val("");
-        $(".opertive-container").empty();
-        $(".opertive-container").hide();
-        
-        
-    })
-    $(".add").on('click',function(){
-        $(".card").addClass("hide");
-        $(".add-data").removeClass("hide");
-            $(".show-data").addClass("hide");
-            $(".old").removeClass("hide");
-            $("textarea").val("");
-        $("input[type='text']").val("");
-        $(".opertive-container").empty();
-        $(".opertive-container").hide();
-        
     
-    })
+  
 })
+     
+
+
+
+
+
+
+
+      
 
 
 
@@ -478,6 +563,52 @@ $(".history").on("click",function(){
 
 
 
+
+$("input[class='check-box']").on("click",function(){
+    if(this.checked){
+        $(this).parent().attr("checked",true);
+    }
+    else if(!(this.checked)){
+        $(this).parent().attr("checked",false);
+    }
+});
+
+
+
+
+//Opertive Categories
+function opertiveCategories(){
+    for(let index =0 ;index<opertive.length;index++){
+        let opertiveCategories=document.createElement("h5"),
+            categoriesChecking=document.createElement("input"),
+            line=document.createElement("hr"),
+            categoriesContainer=document.createElement("div");
+        $(opertiveCategories).appendTo(categoriesContainer).addClass("opertive-cont").text(opertive[index]);
+        $(categoriesChecking).appendTo(categoriesContainer).addClass("opertive-check").attr("type","checkbox").on("click",function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+         $(line).addClass("horizontal");
+        $(".opertive-container").append(categoriesContainer);
+        $(".opertive-container").append(line);  
+         $(categoriesContainer).addClass("category-parent");
+
+    }
+};
+opertiveCategories();
+
+
+
+
+
+
+
+
+
 //Edit old data
 $(".save-old").on("click",function(){
     $(".card").addClass("hide");
@@ -497,70 +628,33 @@ $(".save-old").on("click",function(){
     visits[theIndex].thirdNotes=$(".third-notes").val();
     visits[theIndex].fourthDate=$(".fourth-date").val();
     visits[theIndex].fourthNotes=$(".fourth-notes").val();
-    work[theIndex].OpertiveStatus=$(".check-box").eq(0).attr("checked");
-    work[theIndex].EndodonticTreatmentStatus=$(".check-box").eq(1).attr("checked");
-    work[theIndex].PostCoreStatus=$(".check-box").eq(2).attr("checked");
-    work[theIndex].CrownStatus=$(".check-box").eq(3).attr("checked");
-    work[theIndex].RemovableStatus=$(".check-box").eq(4).attr("checked");
-    work[theIndex].ImplantStatus=$(".check-box").eq(5).attr("checked");
-    work[theIndex].ExtractionStatus=$(".check-box").eq(6).attr("checked");
-    work[theIndex].PeudoStatus=$(".check-box").eq(7).attr("checked");
-    work[theIndex].ScalingPolishingStatus=$(".check-box").eq(8).attr("checked");
-    work[theIndex].OrthoDonticsStatus=$(".check-box").eq(9).attr("checked");
+
+    work[theIndex].OpertiveStatus=$(".check").eq(0).attr("checked");
+    work[theIndex].EndodonticTreatmentStatus=$(".check").eq(1).attr("checked");
+    work[theIndex].PostCoreStatus=$(".check").eq(2).attr("checked");
+    work[theIndex].CrownStatus=$(".check").eq(3).attr("checked");
+    work[theIndex].RemovableStatus=$(".check").eq(4).attr("checked");
+    work[theIndex].ImplantStatus=$(".check").eq(5).attr("checked");
+    work[theIndex].ExtractionStatus=$(".check").eq(6).attr("checked");
+    work[theIndex].PeudoStatus=$(".check").eq(7).attr("checked");
+    work[theIndex].ScalingPolishingStatus=$(".check").eq(8).attr("checked");
+    work[theIndex].OrthoDonticsStatus=$(".check").eq(9).attr("checked");
     
-    opertiveWork[theIndex].composite=$(".opertive-check").eq(0).attr("checked");
-    opertiveWork[theIndex].amalgum=$(".opertive-check").eq(1).attr("checked");
-    opertiveWork[theIndex].glassIonmers=$(".opertive-check").eq(2).attr("checked");
-    
+    opertiveWork[theIndex].composite=$(".category-parent").eq(0).attr("checked");
+    opertiveWork[theIndex].amalgum=$(".category-parent").eq(1).attr("checked");
+    opertiveWork[theIndex].glassIonmers=$(".category-parent").eq(2).attr("checked");
+   
     theIndex="";
     $("input[type='text']").val("");
     $("textarea").val("");
+        let theOpertiveCheck=document.querySelectorAll(".opertive-check");
+        for(let x=0;x<$("input[class='opertive-check']").length;x++){
+                theOpertiveCheck[x].checked=false;
+                $(theOpertiveCheck).eq(x).parent().attr("checked",false);
+            }    
+        
+        $(".opertive-container").hide();
 })
-
-
-
-
-//Opertive Categories
-function opertiveCategories(){
-    for(let index =0 ;index<opertive.length;index++){
-        let opertiveCategories=document.createElement("h5"),
-            categoriesChecking=document.createElement("input"),
-            line=document.createElement("hr"),
-            categoriesContainer=document.createElement("div");
-        $(opertiveCategories).appendTo(categoriesContainer).addClass("opertive-cont").text(opertive[index]);
-        $(categoriesChecking).appendTo(categoriesContainer).addClass("opertive-check").attr("type","checkbox");
-         $(line).addClass("horizontal");
-        $(".opertive-container").append(categoriesContainer);
-        $(".opertive-container").append(line);  
-         $(categoriesContainer).addClass("category-parent").show();
-
-    }
-};
-
-opertiveCategories();
-
-
-
-
-//show opertive categories
-$('.opertive').on("click",function(){
-    
-    $(".categories").hide();
-    $(".opertive-container").show();
-    $(".category-parent").show();
-});
-
-
-$(document).ready(function(){
-    $('input[type="checkbox"]').click(function(){
-        if(this.checked){
-            $(this).attr("checked",true);
-        }
-        else if(!(this.checked)){
-            $(this).attr("checked",false);
-        }
-    });
-});
 
 
 
@@ -570,3 +664,4 @@ console.log(history);
 console.log(visits);
 console.log(work);
 console.log(opertiveWork);
+console.log(theIndex);
