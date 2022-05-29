@@ -19,13 +19,15 @@ let opertive=["Composite","Amalgum","Glass ionmer"];
 let postCore=["fiberPost","metalPost","custom made post"];
 let crown=["primary impression","reduction","secondary impression","try in","cementation"];
 let removable=["partial","complete"];
-let peudo=["pulptomy","pulpectomy"];
+
 let orthoDontics=["upper arch","lower arch","Both arches"];  
 let opertiveWork=[];
 let postCoreWork=[];
- 
+let orthoWork=[];
+let peudoWork=[];
+let crownWork=[];
 
-$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container").hide();
+$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container").hide();
 $(".edit-button , .accordion").addClass("hide");
 
 
@@ -38,7 +40,7 @@ $(function(){
         $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".categories , .opertive-container ,.post-core-container").hide();
+        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
        
     });
     
@@ -52,7 +54,7 @@ $(".home").on("click",function(){
     $(".add , .old").show();
     $("textarea").val("");
     $("input[type='text']").val("");
-    $(".categories , .opertive-container ,.post-core-container").hide();
+    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
     
 })
 
@@ -196,7 +198,29 @@ $(".post-core").on("click",function(){
     $(".categories").hide();
     $(".post-core-container").show();
     $(".post-core-parent").show();
-})
+});
+
+
+$(".ortho").on("click",function(){
+    $(".categories").hide();
+    $(".ortho-container").show();
+    $(".ortho-parent").show();
+});
+
+
+$(".peudo").on("click",function(){
+    $(".categories").hide();
+    $(".peudo-container").show();
+    $(".peudo-parent").show();
+});
+
+
+
+$(".crown").on("click",function(){
+    $(".categories").hide();
+    $(".crown-container").show();
+    $(".crown-parent").show();
+});
     }
 }
 
@@ -210,7 +234,7 @@ $(".add-patient").on("click",function(){
     $(".first-row , .second-row").empty();
     addCategories();
     $(".save-button").show();
-    $(".save-old , .categories , .category-parent ,.opertive-container ,.post-core-container").hide();
+    $(".save-old , .categories , .category-parent ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
     $(".add , .history-container ,.visits-info").addClass("hide");
     $(".add-data , .card").toggleClass("hide");
     $(".card-data li button").addClass("info-buttons");
@@ -233,7 +257,7 @@ $(".info").on("click",function(){
     $(".history ,.visits ,.work").removeClass("clicked");
     $(".history-container ,.accordion ,.visits-info").addClass("hide");
     $(".info-container").removeClass("hide");
-    $(".categories ,.opertive-container ,.post-core-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
 });
 
 
@@ -243,7 +267,7 @@ $(".visits").on("click",function(){
     $('.history-container ,.info-container').addClass("hide");
     $(".info ,.history , .work").removeClass("clicked");
     $(".accordion ,.visits-info").removeClass("hide");
-    $(".categories ,.opertive-container ,.post-core-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
 })
 
 
@@ -253,7 +277,7 @@ $(".work").on("click",function(){
     $('.history-container ,.info-container ,.accordion ,.visits-info').addClass("hide");
     $(".info ,.history , .visits").removeClass("clicked");
     $(".categories").show();
-    $(".opertive-container ,.post-core-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
 });
 
 
@@ -323,6 +347,24 @@ $(".save-button").on("click",function(){
         metalPost:$(".post-core-parent").eq(1).attr("checked"),
         customMadePost:$(".post-core-parent").eq(2).attr("checked")
     });
+    orthoWork.push({
+        upperArch:$(".ortho-parent").eq(0).attr("checked"),
+        lowerArch:$(".ortho-parent").eq(1).attr("checked"),
+        bothArches:$(".ortho-parent").eq(2).attr("checked")
+    });
+    peudoWork.push({
+        pulptomy:$(".peudo-parent").eq(0).attr("checked"),
+        pulpectomy:$(".peudo-parent").eq(1).attr("checked")
+    });
+
+
+    crownWork.push({
+        primaryImpression:$(".crown-parent").eq(0).attr("checked"),
+        reduction:$(".crown-parent").eq(1).attr("checked"),
+        secondaryImpression:$(".crown-parent").eq(0).attr("checked"),
+        tryIn:$(".crown-parent").eq(0).attr("checked"),
+        cementation:$(".crown-parent").eq(0).attr("checked")
+    });
     $("input[type='text']").val("");
     $("textarea").val("");
    
@@ -332,11 +374,26 @@ $(".save-button").on("click",function(){
             $(theOpertiveCheck).eq(x).parent().attr("checked",false);
         }
         let postCoreCheck=document.querySelectorAll(".post-core-check");
-        for(let x=0;x<$("input[class='post-core-check']").length;x++){
-            postCoreCheck[x].checked=false;
-            $(postCoreCheck).eq(x).parent().attr("checked",false);
+        for(let y=0;y<$("input[class='post-core-check']").length;y++){
+            postCoreCheck[y].checked=false;
+            $(postCoreCheck).eq(y).parent().attr("checked",false);
         }
-         $(".opertive-container ,.post-core-container").hide();
+        let orthoCheck=document.querySelectorAll(".ortho-check");
+        for(let i=0;i<$("input[class='ortho-check']").length;i++){
+            orthoCheck[i].checked=false;
+            $(orthoCheck).eq(i).parent().attr("checked",false);
+        }
+        let peudoCheck=document.querySelectorAll(".peudo-check");
+        for(let p=0;p<$("input[class='peudo-check']").length;p++){
+            peudoCheck[p].checked=false;
+            $(peudoCheck).eq(p).parent().attr("checked",false);
+        }
+        let crownCheck=document.querySelectorAll(".crown-check");
+        for(let c=0;c<$("input[class='crown-check']").length;c++){
+            crownCheck[c].checked=false;
+            $(crownCheck).eq(c).parent().attr("checked",false);
+        }
+         $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
         
 })
 
@@ -353,7 +410,7 @@ $(".old").on("click",function(){
      $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".opertive-container , .post-core-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
     
 });
 
@@ -374,7 +431,7 @@ let theIndex;
 //Get patient info
 $(".search").on("click",function(){
     $("div[class='check-cont']").empty();
-    $(".opertive-container ,.post-core-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
     historyCheck();
     for(let index=0 ; index<personalInfo.length ; index++){
         if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
@@ -391,7 +448,7 @@ $(".search").on("click",function(){
             $(".history-container").addClass("hide");
             $(".categories").hide();
             $(".info-container").removeClass("hide");
-            $(".opertive-container ,.post-core-container").hide();
+            $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
             $(".accordion").addClass("hide");
             $(".save-button").addClass("hide");
             $(".edit-button").removeClass("hide");
@@ -566,6 +623,90 @@ $(".search").on("click",function(){
              postCoreCheck[2].checked=false;
              $('.post-core-parent').eq(2).attr("checked",false);
            }
+
+
+
+           let orthoCheck=document.querySelectorAll(".ortho-check");
+           if(orthoWork[index].upperArch=="checked"){
+            orthoCheck[0].checked=true;
+            $('.ortho-parent').eq(0).attr("checked",true);
+           }else{
+             orthoCheck[0].checked=false;
+             $('.ortho-parent').eq(0).attr("checked",false);
+           }
+           if(orthoWork[index].lowerArch=="checked"){
+            orthoCheck[1].checked=true;
+            $('.ortho-parent').eq(1).attr("checked",true);
+           }else{
+             orthoCheck[1].checked=false;
+             $('.ortho-parent').eq(1).attr("checked",false);
+           }
+           if(orthoWork[index].bothArches=="checked"){
+            orthoCheck[2].checked=true;
+            $('.ortho-parent').eq(2).attr("checked",true);
+           }else{
+             orthoCheck[2].checked=false;
+             $('.ortho-parent').eq(2).attr("checked",false);
+           }
+
+
+           let peudoCheck=document.querySelectorAll(".peudo-check");
+           if(peudoWork[index].pulptomy=="checked"){
+            peudoCheck[0].checked=true;
+            $('.peudo-parent').eq(0).attr("checked",true);
+           }else{
+             peudoCheck[0].checked=false;
+             $('.peudo-parent').eq(0).attr("checked",false);
+           }
+           if(peudoWork[index].pulpectomy=="checked"){
+            peudoCheck[1].checked=true;
+            $('.peudo-parent').eq(1).attr("checked",true);
+           }else{
+             peudoCheck[1].checked=false;
+             $('.peudo-parent').eq(1).attr("checked",false);
+           }
+
+
+
+
+
+           
+           let crownCheck=document.querySelectorAll(".crown-check");
+           if(crownWork[index].primaryImpression=="checked"){
+            crownCheck[0].checked=true;
+            $('.crown-parent').eq(0).attr("checked",true);
+           }else{
+             crownCheck[0].checked=false;
+             $('.crown-parent').eq(0).attr("checked",false);
+           }
+           if(crownWork[index].reduction=="checked"){
+            crownCheck[1].checked=true;
+            $('.crown-parent').eq(1).attr("checked",true);
+           }else{
+             crownCheck[1].checked=false;
+             $('.crown-parent').eq(1).attr("checked",false);
+           }
+           if(crownWork[index].secondaryImpression=="checked"){
+            crownCheck[2].checked=true;
+            $('.crown-parent').eq(2).attr("checked",true);
+           }else{
+             crownCheck[2].checked=false;
+             $('.crown-parent').eq(2).attr("checked",false);
+           }
+           if(crownWork[index].tryIn=="checked"){
+            crownCheck[3].checked=true;
+            $('.crown-parent').eq(3).attr("checked",true);
+           }else{
+             crownCheck[3].checked=false;
+             $('.crown-parent').eq(3).attr("checked",false);
+           }
+           if(crownWork[index].cementation=="checked"){
+            crownCheck[4].checked=true;
+            $('.crown-parent').eq(4).attr("checked",true);
+           }else{
+             crownCheck[4].checked=false;
+             $('.crown-parent').eq(4).attr("checked",false);
+           }
         }  
         
     }
@@ -596,7 +737,7 @@ $(".history").on("click",function(){
     $(".info ,.visits ,.work").removeClass("clicked");
     $(".accordion").addClass("hide");
     $(".categories").hide();
-    $(".opertive-container ,.post-core-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
 
    
 });
@@ -675,6 +816,92 @@ postCoreCategories();
 
 
 
+let ortho=[
+    "Upper arch",
+    "Lower arch",
+    "Both arches"
+];
+
+function orthoCategories(){
+    for(let index =0 ;index<ortho.length;index++){
+        let orthoCategories=document.createElement("h5"),
+            categoriesChecking=document.createElement("input"),
+            line=document.createElement("hr"),
+            categoriesContainer=document.createElement("div");
+        $(orthoCategories).appendTo(categoriesContainer).addClass("ortho-cont").text(ortho[index]);
+        $(categoriesChecking).appendTo(categoriesContainer).addClass("ortho-check").attr("type","checkbox").on("click",function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+         $(line).addClass("horizontal");
+        $(".ortho-container").append(categoriesContainer);
+        $(".ortho-container").append(line);  
+         $(categoriesContainer).addClass("ortho-parent");
+
+    }
+};
+
+orthoCategories();
+
+
+
+
+let peudo=["pulptomy","pulpectomy"];
+function peudoCategories(){
+    for(let index =0 ;index<peudo.length;index++){
+        let peudoCategories=document.createElement("h5"),
+            categoriesChecking=document.createElement("input"),
+            line=document.createElement("hr"),
+            categoriesContainer=document.createElement("div");
+        $(peudoCategories).appendTo(categoriesContainer).addClass("peudo-cont").text(peudo[index]);
+        $(categoriesChecking).appendTo(categoriesContainer).addClass("peudo-check").attr("type","checkbox").on("click",function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+         $(line).addClass("horizontal");
+        $(".peudo-container").append(categoriesContainer);
+        $(".peudo-container").append(line);  
+         $(categoriesContainer).addClass("peudo-parent");
+
+    }
+};
+peudoCategories();
+
+
+
+
+
+function crownCategories(){
+    for(let index =0 ;index<crown.length;index++){
+        let crownCategories=document.createElement("h5"),
+            categoriesChecking=document.createElement("input"),
+            line=document.createElement("hr"),
+            categoriesContainer=document.createElement("div");
+        $(crownCategories).appendTo(categoriesContainer).addClass("crown-cont").text(crown[index]);
+        $(categoriesChecking).appendTo(categoriesContainer).addClass("crown-check").attr("type","checkbox").on("click",function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+         $(line).addClass("horizontal");
+        $(".crown-container").append(categoriesContainer);
+        $(".crown-container").append(line);  
+         $(categoriesContainer).addClass("crown-parent");
+
+    }
+};
+crownCategories();
 
 
 
@@ -719,22 +946,47 @@ $(".save-old").on("click",function(){
     postCoreWork[theIndex].metalPost=$(".post-core-parent").eq(1).attr("checked");
     postCoreWork[theIndex].customMadePost=$(".post-core-parent").eq(2).attr("checked");
 
+    orthoWork[theIndex].upperArch=$(".ortho-parent").eq(0).attr("checked");
+    orthoWork[theIndex].lowerArch=$(".ortho-parent").eq(1).attr("checked");
+    orthoWork[theIndex].bothArches=$(".ortho-parent").eq(2).attr("checked");
+
+
+    peudoWork[theIndex].pulptomy=$(".peudo-parent").eq(0).attr("checked");
+    peudoWork[theIndex].pulpectomy=$(".peudo-parent").eq(1).attr("checked");
+
+
+    crownWork[theIndex].primaryImpression=$(".crown-parent").eq(0).attr("checked");
+    crownWork[theIndex].reduction=$(".crown-parent").eq(1).attr("checked");
+    crownWork[theIndex].secondaryImpression=$(".crown-parent").eq(2).attr("checked");
+    crownWork[theIndex].tryIn=$(".crown-parent").eq(3).attr("checked");
+    crownWork[theIndex].cementation=$(".crown-parent").eq(4).attr("checked");
+
 
     theIndex="";
     $("input[type='text']").val("");
     $("textarea").val("");
-        let theOpertiveCheck=document.querySelectorAll(".opertive-check");
-        for(let x=0;x<$("input[class='opertive-check']").length;x++){
-                theOpertiveCheck[x].checked=false;
-                $(theOpertiveCheck).eq(x).parent().attr("checked",false);
-            }  
-            let postCoreCheck=document.querySelectorAll(".post-core-check");
-        for(let x=0;x<$("input[class='post-core-check']").length;x++){
-            postCoreCheck[x].checked=false;
-            $(postCoreCheck).eq(x).parent().attr("checked",false);
-        }  
+    let theOpertiveCheck=document.querySelectorAll(".opertive-check");
+    for(let x=0;x<$("input[class='opertive-check']").length;x++){
+        theOpertiveCheck[x].checked=false;
+        $(theOpertiveCheck).eq(x).parent().attr("checked",false);
+    }
+    let postCoreCheck=document.querySelectorAll(".post-core-check");
+    for(let y=0;y<$("input[class='post-core-check']").length;y++){
+        postCoreCheck[y].checked=false;
+        $(postCoreCheck).eq(y).parent().attr("checked",false);
+    }
+    let orthoCheck=document.querySelectorAll(".ortho-check");
+    for(let i=0;i<$("input[class='ortho-check']").length;i++){
+        orthoCheck[i].checked=false;
+        $(orthoCheck).eq(i).parent().attr("checked",false);
+    }
+    let crownCheck=document.querySelectorAll(".crown-check");
+        for(let c=0;c<$("input[class='crown-check']").length;c++){
+            crownCheck[c].checked=false;
+            $(crownCheck).eq(c).parent().attr("checked",false);
+        }
         
-        $(".opertive-container , .post-core-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container").hide();
 })
 
 
