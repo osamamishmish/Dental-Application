@@ -22,10 +22,10 @@ let removable=["partial","complete"];
 let peudo=["pulptomy","pulpectomy"];
 let orthoDontics=["upper arch","lower arch","Both arches"];  
 let opertiveWork=[];
-
+let postCoreWork=[];
  
 
-$(".save-button , .save-old , .categories , .opertive-container").hide();
+$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container").hide();
 $(".edit-button , .accordion").addClass("hide");
 
 
@@ -38,7 +38,7 @@ $(function(){
         $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".categories , .opertive-container").hide();
+        $(".categories , .opertive-container ,.post-core-container").hide();
        
     });
     
@@ -52,7 +52,7 @@ $(".home").on("click",function(){
     $(".add , .old").show();
     $("textarea").val("");
     $("input[type='text']").val("");
-    $(".categories , .opertive-container ").hide();
+    $(".categories , .opertive-container ,.post-core-container").hide();
     
 })
 
@@ -190,6 +190,13 @@ $('.opertive').on("click",function(){
     $(".opertive-container").show();
     $(".category-parent").show();
 });
+
+//show post and core categories
+$(".post-core").on("click",function(){
+    $(".categories").hide();
+    $(".post-core-container").show();
+    $(".post-core-parent").show();
+})
     }
 }
 
@@ -203,7 +210,7 @@ $(".add-patient").on("click",function(){
     $(".first-row , .second-row").empty();
     addCategories();
     $(".save-button").show();
-    $(".save-old , .categories , .category-parent ,.opertive-container").hide();
+    $(".save-old , .categories , .category-parent ,.opertive-container ,.post-core-container").hide();
     $(".add , .history-container ,.visits-info").addClass("hide");
     $(".add-data , .card").toggleClass("hide");
     $(".card-data li button").addClass("info-buttons");
@@ -226,7 +233,7 @@ $(".info").on("click",function(){
     $(".history ,.visits ,.work").removeClass("clicked");
     $(".history-container ,.accordion ,.visits-info").addClass("hide");
     $(".info-container").removeClass("hide");
-    $(".categories ,.opertive-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container").hide();
 });
 
 
@@ -236,7 +243,7 @@ $(".visits").on("click",function(){
     $('.history-container ,.info-container').addClass("hide");
     $(".info ,.history , .work").removeClass("clicked");
     $(".accordion ,.visits-info").removeClass("hide");
-    $(".categories ,.opertive-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container").hide();
 })
 
 
@@ -246,7 +253,7 @@ $(".work").on("click",function(){
     $('.history-container ,.info-container ,.accordion ,.visits-info').addClass("hide");
     $(".info ,.history , .visits").removeClass("clicked");
     $(".categories").show();
-    $(".opertive-container").hide();
+    $(".opertive-container ,.post-core-container").hide();
 });
 
 
@@ -311,7 +318,11 @@ $(".save-button").on("click",function(){
         amalgum:$(".category-parent").eq(1).attr("checked"),
         glassIonmers:$(".category-parent").eq(2).attr("checked")
     });
-
+    postCoreWork.push({
+        fiberPost:$(".post-core-parent").eq(0).attr("checked"),
+        metalPost:$(".post-core-parent").eq(1).attr("checked"),
+        customMadePost:$(".post-core-parent").eq(2).attr("checked")
+    });
     $("input[type='text']").val("");
     $("textarea").val("");
    
@@ -320,7 +331,12 @@ $(".save-button").on("click",function(){
             theOpertiveCheck[x].checked=false;
             $(theOpertiveCheck).eq(x).parent().attr("checked",false);
         }
-         $(".opertive-container").hide();
+        let postCoreCheck=document.querySelectorAll(".post-core-check");
+        for(let x=0;x<$("input[class='post-core-check']").length;x++){
+            postCoreCheck[x].checked=false;
+            $(postCoreCheck).eq(x).parent().attr("checked",false);
+        }
+         $(".opertive-container ,.post-core-container").hide();
         
 })
 
@@ -337,7 +353,7 @@ $(".old").on("click",function(){
      $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".opertive-container").hide();
+        $(".opertive-container , .post-core-container").hide();
     
 });
 
@@ -358,7 +374,7 @@ let theIndex;
 //Get patient info
 $(".search").on("click",function(){
     $("div[class='check-cont']").empty();
-    $(".opertive-container").hide();
+    $(".opertive-container ,.post-core-container").hide();
     historyCheck();
     for(let index=0 ; index<personalInfo.length ; index++){
         if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
@@ -375,7 +391,7 @@ $(".search").on("click",function(){
             $(".history-container").addClass("hide");
             $(".categories").hide();
             $(".info-container").removeClass("hide");
-            $(".opertive-container").hide();
+            $(".opertive-container ,.post-core-container").hide();
             $(".accordion").addClass("hide");
             $(".save-button").addClass("hide");
             $(".edit-button").removeClass("hide");
@@ -525,7 +541,31 @@ $(".search").on("click",function(){
              opertiveCheck[2].checked=false;
              $('.category-parent').eq(2).attr("checked",false);
            }
-            
+
+
+
+           let postCoreCheck=document.querySelectorAll(".post-core-check");
+           if(postCoreWork[index].fiberPost=="checked"){
+            postCoreCheck[0].checked=true;
+            $('.post-core-parent').eq(0).attr("checked",true);
+           }else{
+             postCoreCheck[0].checked=false;
+             $('.post-core-parent').eq(0).attr("checked",false);
+           }
+           if(postCoreWork[index].metalPost=="checked"){
+            postCoreCheck[1].checked=true;
+            $('.post-core-parent').eq(1).attr("checked",true);
+           }else{
+             postCoreCheck[1].checked=false;
+             $('.post-core-parent').eq(1).attr("checked",false);
+           }
+           if(postCoreWork[index].customMadePost=="checked"){
+            postCoreCheck[2].checked=true;
+            $('.post-core-parent').eq(2).attr("checked",true);
+           }else{
+             postCoreCheck[2].checked=false;
+             $('.post-core-parent').eq(2).attr("checked",false);
+           }
         }  
         
     }
@@ -556,7 +596,7 @@ $(".history").on("click",function(){
     $(".info ,.visits ,.work").removeClass("clicked");
     $(".accordion").addClass("hide");
     $(".categories").hide();
-    $(".opertive-container").hide();
+    $(".opertive-container ,.post-core-container").hide();
 
    
 });
@@ -602,6 +642,37 @@ function opertiveCategories(){
 opertiveCategories();
 
 
+let postAndCore=[
+    "fiber post",
+    "Metal post",
+    "custom made post"
+];
+
+function postCoreCategories(){
+    for(let index =0 ;index<postAndCore.length;index++){
+        let postCoreCategories=document.createElement("h5"),
+            categoriesChecking=document.createElement("input"),
+            line=document.createElement("hr"),
+            categoriesContainer=document.createElement("div");
+        $(postCoreCategories).appendTo(categoriesContainer).addClass("post-core-cont").text(postAndCore[index]);
+        $(categoriesChecking).appendTo(categoriesContainer).addClass("post-core-check").attr("type","checkbox").on("click",function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+         $(line).addClass("horizontal");
+        $(".post-core-container").append(categoriesContainer);
+        $(".post-core-container").append(line);  
+         $(categoriesContainer).addClass("post-core-parent");
+
+    }
+};
+postCoreCategories();
+
+
 
 
 
@@ -643,7 +714,12 @@ $(".save-old").on("click",function(){
     opertiveWork[theIndex].composite=$(".category-parent").eq(0).attr("checked");
     opertiveWork[theIndex].amalgum=$(".category-parent").eq(1).attr("checked");
     opertiveWork[theIndex].glassIonmers=$(".category-parent").eq(2).attr("checked");
-   
+
+    postCoreWork[theIndex].fiberPost=$(".post-core-parent").eq(0).attr("checked");
+    postCoreWork[theIndex].metalPost=$(".post-core-parent").eq(1).attr("checked");
+    postCoreWork[theIndex].customMadePost=$(".post-core-parent").eq(2).attr("checked");
+
+
     theIndex="";
     $("input[type='text']").val("");
     $("textarea").val("");
@@ -651,9 +727,14 @@ $(".save-old").on("click",function(){
         for(let x=0;x<$("input[class='opertive-check']").length;x++){
                 theOpertiveCheck[x].checked=false;
                 $(theOpertiveCheck).eq(x).parent().attr("checked",false);
-            }    
+            }  
+            let postCoreCheck=document.querySelectorAll(".post-core-check");
+        for(let x=0;x<$("input[class='post-core-check']").length;x++){
+            postCoreCheck[x].checked=false;
+            $(postCoreCheck).eq(x).parent().attr("checked",false);
+        }  
         
-        $(".opertive-container").hide();
+        $(".opertive-container , .post-core-container").hide();
 })
 
 

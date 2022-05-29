@@ -135,24 +135,24 @@ ul li{
     width:100%;
     justify-content:space-between;
 } */
-.opertive-container{
+.opertive-container , .post-core-container{
     display:flex;
     flex-flow:column;
     width:100%;
     
     
 }
-.category-parent{
+.category-parent , .post-core-parent{
     display: flex;
     flex-flow:row;
     justify-content:space-between;
 }
-.opertive-cont{
+.opertive-cont , .post-core-cont{
     display:flex;
     justify-content:flex-start;
     
 }
-.opertive-check{
+.opertive-check ,.post-core-check{
     display:flex;
     align-self:center;
     justify-content:flex-end;
