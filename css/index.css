@@ -11,6 +11,7 @@ body{
     color:black;
     margin-top:70px;
     height:fit-content;
+    /* height:100%; */
     padding-top:20px;
     padding-bottom: 20px;
     
@@ -25,10 +26,16 @@ ul li{
     border:none;
     background-color: transparent;
     color:black;
+    font-size:20px;
+}
+.dr-name{
+    font-size:20px;
+    font-weight:bold;
 }
 .card{
     margin-top:200px;
-    width:60%;
+    width:80%;
+    height:100%;
     margin-left:auto;
     margin-right:auto;
 }
@@ -135,24 +142,24 @@ ul li{
     width:100%;
     justify-content:space-between;
 } */
-.opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container{
+.opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container , .partial , .complete ,.removable-cat {
     display:flex;
     flex-flow:column;
     width:100%;
     
     
 }
-.category-parent , .post-core-parent ,.ortho-parent ,.peudo-parent ,.crown-parent{
+.category-parent , .post-core-parent ,.ortho-parent ,.peudo-parent ,.crown-parent ,.partial-parent ,.complete-parent ,.partial-head ,.complete-head ,.removable-parent{
     display: flex;
     flex-flow:row;
     justify-content:space-between;
 }
-.opertive-cont , .post-core-cont ,.ortho-cont ,.peudo-cont ,.crown-cont{
+.opertive-cont , .post-core-cont ,.ortho-cont ,.peudo-cont ,.crown-cont ,.removable-cont ,.partial-head h5  ,.complete-head h5{
     display:flex;
     justify-content:flex-start;
     
 }
-.opertive-check ,.post-core-check , .ortho-check ,.peudo-check ,.crown-check{
+.opertive-check ,.post-core-check , .ortho-check ,.peudo-check ,.crown-check ,.removable-check ,.partial-head input ,.complete-head input{
     display:flex;
     align-self:center;
     justify-content:flex-end;
@@ -162,9 +169,11 @@ ul li{
     color:black;
 
 }
-.save-button{
+.save-button ,.add-visit ,.save-old{
     margin-top:10px;
 }
-
+.info , .history ,.visits ,.work{
+    font-size:25px;
+}
 
 

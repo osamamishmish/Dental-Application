@@ -18,7 +18,6 @@ let workStatus=[
 let opertive=["Composite","Amalgum","Glass ionmer"];  
 let postCore=["fiberPost","metalPost","custom made post"];
 let crown=["primary impression","reduction","secondary impression","try in","cementation"];
-let removable=["partial","complete"];
 
 let orthoDontics=["upper arch","lower arch","Both arches"];  
 let opertiveWork=[];
@@ -26,8 +25,12 @@ let postCoreWork=[];
 let orthoWork=[];
 let peudoWork=[];
 let crownWork=[];
+let removableWork=[];
+let partialWork=[];
+let completeWork=[];
 
-$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container").hide();
+
+$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
 $(".edit-button , .accordion").addClass("hide");
 
 
@@ -40,11 +43,30 @@ $(function(){
         $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
        
     });
     
 })
+
+
+let theVisitContainer=document.querySelector(".accordion");
+$('.add-visit').on("click",function(){
+    $(".accordion-item").eq(0).clone().appendTo(".accordion");
+    $(".accordion").children().last().children().eq(0).children().children().text(theVisitContainer.childElementCount+"th"+" "+"visit");
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(0).attr("id","flush-heading"+theVisitContainer.childElementCount);
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).attr("id","flush-collapse"+theVisitContainer.childElementCount);
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).addClass(theVisitContainer.childElementCount+"th"+"-"+"visit").removeClass("first-visit");
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(0).children().attr("data-bs-target","#flush-collapse"+theVisitContainer.childElementCount);
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(0).children().attr("aria-controls","flush-collapse"+theVisitContainer.childElementCount);
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).attr("aria-labelledby","flush-heading"+theVisitContainer.childElementCount);
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).children().eq(0).children().eq(0).addClass(theVisitContainer.childElementCount+"th"+" "+"date").removeClass("first-date");
+    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).children().eq(1).children().eq(0).addClass(theVisitContainer.childElementCount+"th"+" "+"note").removeClass("first-note");
+})
+
+
+
+
 
 
 
@@ -54,7 +76,7 @@ $(".home").on("click",function(){
     $(".add , .old").show();
     $("textarea").val("");
     $("input[type='text']").val("");
-    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
     
 })
 
@@ -102,7 +124,7 @@ function historyInfo(){
     $(historyContainer).addClass("history-container");
     for(let index=0;index<4;index++){
         let container=document.createElement("div");
-        let diseases=document.createElement("h6");
+        let diseases=document.createElement("h4");
         let commentsCont=document.createElement("div");
         let historyComments=document.createElement("textarea");
         let checkContainer=document.createElement("div");
@@ -155,7 +177,7 @@ let categoryClass=[
     "endo",
     "post-core",
     "crown",
-    "removeble",
+    "removable",
     "implant",
     "extraction",
     "peudo",
@@ -191,6 +213,7 @@ $('.opertive').on("click",function(){
     $(".categories").hide();
     $(".opertive-container").show();
     $(".category-parent").show();
+
 });
 
 //show post and core categories
@@ -221,6 +244,27 @@ $(".crown").on("click",function(){
     $(".crown-container").show();
     $(".crown-parent").show();
 });
+
+$(".removable").on("click",function(){
+    $(".categories").hide();
+    $(".removable-container").show();
+    $(".partial , .complete").hide();
+   $(".removable-cat").show();
+    
+});
+$(".partial-head h5").on("click",function(){
+    $(".removable-container").show();
+    $(".removable-cat").hide();
+    $(".partial").show();
+})
+$(".complete-head h5").on("click",function(){
+    $(".removable-container").show();
+    $(".removable-cat").hide();
+    $(".complete").show();
+})
+
+
+
     }
 }
 
@@ -235,7 +279,7 @@ $(".add-patient").on("click",function(){
     addCategories();
     $(".save-button").show();
     $(".save-old , .categories , .category-parent ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
-    $(".add , .history-container ,.visits-info").addClass("hide");
+    $(".add , .history-container ,.visits-info ,.add-visit").addClass("hide");
     $(".add-data , .card").toggleClass("hide");
     $(".card-data li button").addClass("info-buttons");
     $(".info").toggleClass("clicked");
@@ -255,9 +299,9 @@ $(".info").on("click",function(){
     $(this).removeClass("hide");
     $(this).toggleClass("clicked");
     $(".history ,.visits ,.work").removeClass("clicked");
-    $(".history-container ,.accordion ,.visits-info").addClass("hide");
+    $(".history-container ,.accordion ,.visits-info ,.add-visit").addClass("hide");
     $(".info-container").removeClass("hide");
-    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
 });
 
 
@@ -266,18 +310,18 @@ $(".visits").on("click",function(){
     $(this).toggleClass("clicked");
     $('.history-container ,.info-container').addClass("hide");
     $(".info ,.history , .work").removeClass("clicked");
-    $(".accordion ,.visits-info").removeClass("hide");
-    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+    $(".accordion ,.visits-info ,.add-visit").removeClass("hide");
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
 })
 
 
 //work
 $(".work").on("click",function(){
     $(this).toggleClass("clicked");
-    $('.history-container ,.info-container ,.accordion ,.visits-info').addClass("hide");
+    $('.history-container ,.info-container ,.accordion ,.visits-info ,.add-visit').addClass("hide");
     $(".info ,.history , .visits").removeClass("clicked");
     $(".categories").show();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
 });
 
 
@@ -365,6 +409,25 @@ $(".save-button").on("click",function(){
         tryIn:$(".crown-parent").eq(0).attr("checked"),
         cementation:$(".crown-parent").eq(0).attr("checked")
     });
+
+    removableWork.push({
+        partial:$(".partial-head").attr("checked"),
+        complete:$(".complete-head").attr("checked")
+    });
+    partialWork.push({
+        primaryImpression:$(".partial div").eq(0).attr("checked"),
+        secondaryImpression:$(".partial div").eq(1).attr("checked"),
+        jawRelationship:$(".partial div").eq(2).attr("checked"),
+        tryIn:$(".partial div").eq(3).attr("checked"),
+        delivery:$(".partial div").eq(4).attr("checked")
+    })
+    completeWork.push({
+        primaryImpression:$(".complete div").eq(0).attr("checked"),
+        secondaryImpression:$(".complete div").eq(1).attr("checked"),
+        jawRelationship:$(".complete div").eq(2).attr("checked"),
+        tryIn:$(".complete div").eq(3).attr("checked"),
+        delivery:$(".complete div").eq(4).attr("checked")
+    })
     $("input[type='text']").val("");
     $("textarea").val("");
    
@@ -393,7 +456,17 @@ $(".save-button").on("click",function(){
             crownCheck[c].checked=false;
             $(crownCheck).eq(c).parent().attr("checked",false);
         }
-         $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+        let headCheck=document.querySelectorAll(".head-check");
+        for(let h=0;h<$("input[class='head-check']").length;h++){
+            headCheck[h].checked=false;
+            $(headCheck).eq(h).parent().attr("checked",false);
+        }
+        let removableCheck=document.querySelectorAll(".removable-check");
+        for(let r=0;r<$("input[class='removable-check']").length;r++){
+            removableCheck[r].checked=false;
+            $(removableCheck).eq(r).parent().attr("checked",false);
+        }
+         $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
         
 })
 
@@ -404,13 +477,13 @@ $(".save-button").on("click",function(){
 //Search Old Patients
 $(".old").on("click",function(){
     $(".show-data").removeClass("hide");
-    $(".add-data").addClass("hide");
+    $(".add-data ,.add-visit").addClass("hide");
     $(".card").addClass("hide");
      $(".add").removeClass("hide");
      $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
     
 });
 
@@ -431,7 +504,7 @@ let theIndex;
 //Get patient info
 $(".search").on("click",function(){
     $("div[class='check-cont']").empty();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
     historyCheck();
     for(let index=0 ; index<personalInfo.length ; index++){
         if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
@@ -448,8 +521,8 @@ $(".search").on("click",function(){
             $(".history-container").addClass("hide");
             $(".categories").hide();
             $(".info-container").removeClass("hide");
-            $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
-            $(".accordion").addClass("hide");
+            $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+            $(".accordion ,.add-visit").addClass("hide");
             $(".save-button").addClass("hide");
             $(".edit-button").removeClass("hide");
             $(".show-data").addClass("hide");
@@ -707,6 +780,105 @@ $(".search").on("click",function(){
              crownCheck[4].checked=false;
              $('.crown-parent').eq(4).attr("checked",false);
            }
+
+
+           let partialHeadCheck=document.querySelectorAll(".head-check");
+           if(removableWork[index].partial=="checked"){
+            partialHeadCheck[0].checked=true;
+            $('.partial-head').attr("checked",true);
+           }else{
+             partialHeadCheck[0].checked=false;
+             $('.partial-head').attr("checked",false);
+           }
+           let completeHeadCheck=document.querySelectorAll(".head-check");
+           if(removableWork[index].complete=="checked"){
+            completeHeadCheck[1].checked=true;
+            $('.complete-head').attr("checked",true);
+           }else{
+             completeHeadCheck[1].checked=false;
+             $('.complete-head').attr("checked",false);
+           }
+
+
+           let check=document.querySelectorAll(".removable-check");
+           if(partialWork[index].primaryImpression=="checked"){
+            check[0].checked=true;
+            $('.partial div').eq(0).attr("checked",true);
+           }else{
+             check[0].checked=false;
+             $('.partial div').eq(0).attr("checked",false);
+           }
+           if(partialWork[index].secondaryImpression=="checked"){
+            check[1].checked=true;
+            $('.partial div').eq(1).attr("checked",true);
+           }else{
+             check[1].checked=false;
+             $('.partial div').eq(1).attr("checked",false);
+           }
+           if(partialWork[index].jawRelationship=="checked"){
+            check[2].checked=true;
+            $('.partial div').eq(2).attr("checked",true);
+           }else{
+             check[2].checked=false;
+             $('.partial div').eq(2).attr("checked",false);
+           }
+           if(partialWork[index].tryIn=="checked"){
+            check[3].checked=true;
+            $('.partial div').eq(3).attr("checked",true);
+           }else{
+             check[3].checked=false;
+             $('.partial div').eq(3).attr("checked",false);
+           }
+           if(partialWork[index].delivery=="checked"){
+            check[4].checked=true;
+            $('.partial div').eq(4).attr("checked",true);
+           }else{
+             check[4].checked=false;
+             $('.partial div').eq(4).attr("checked",false);
+           }
+
+
+
+        //    let check=document.querySelectorAll(".complete.removable-parent.removable-check");
+           if(completeWork[index].primaryImpression=="checked"){
+            check[5].checked=true;
+            $('.complete div').eq(0).attr("checked",true);
+           }else{
+             check[5].checked=false;
+             $('.complete div').eq(0).attr("checked",false);
+           }
+           if(completeWork[index].secondaryImpression=="checked"){
+            check[6].checked=true;
+            $('.complete div').eq(1).attr("checked",true);
+           }else{
+             check[6].checked=false;
+             $('.complete div').eq(1).attr("checked",false);
+           }
+           if(completeWork[index].jawRelationship=="checked"){
+            check[7].checked=true;
+            $('.complete div').eq(2).attr("checked",true);
+           }else{
+             check[7].checked=false;
+             $('.complete div').eq(2).attr("checked",false);
+           }
+           if(completeWork[index].tryIn=="checked"){
+            check[8].checked=true;
+            $('.complete div').eq(3).attr("checked",true);
+           }else{
+             check[8].checked=false;
+             $('.complete div').eq(3).attr("checked",false);
+           }
+           if(completeWork[index].delivery=="checked"){
+            check[9].checked=true;
+            $('.complete div').eq(4).attr("checked",true);
+           }else{
+             check[9].checked=false;
+             $('.complete div').eq(4).attr("checked",false);
+           }
+
+
+
+
         }  
         
     }
@@ -735,9 +907,9 @@ $(".history").on("click",function(){
     $(".history-container").removeClass("hide");
     
     $(".info ,.visits ,.work").removeClass("clicked");
-    $(".accordion").addClass("hide");
+    $(".accordion ,.add-visit").addClass("hide");
     $(".categories").hide();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
 
    
 });
@@ -905,6 +1077,61 @@ crownCategories();
 
 
 
+let removableCategories=["partial","Complete"];
+let removable=[
+    "primary impression",
+    "secondary impression",
+    "jaw relationship",
+    "Try in",
+    "Delivery"
+];
+function addRemovableCategories(){
+    for(let index =0 ;index<removable.length;index++){
+        let removableCategories=document.createElement("h5"),
+            categoriesChecking=document.createElement("input"),
+            line=document.createElement("hr"),
+            categoriesContainer=document.createElement("div");
+            $(categoriesContainer).addClass("removable-parent");
+        $(removableCategories).appendTo(categoriesContainer).addClass("removable-cont").text(removable[index]);
+        $(categoriesChecking).appendTo(categoriesContainer).addClass("removable-check").attr("type","checkbox").on("click",function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+         $(line).addClass("horizontal");
+        // if(index<5){
+        //     $(categoriesContainer).addClass("partial-parent");
+        // }else{
+        //     $(categoriesContainer).addClass("complete-parent");
+        // }
+         
+         $(".partial ,.complete").append($(categoriesContainer));
+        //  if($(categoriesContainer).parent()==$(".partial")){
+        //      $(this).addClass("partial-parent");
+        //  }else{
+        //     $(this).addClass("complete-parent");
+        //  }
+         $(".partial ,.complete").append(line); 
+         
+        }
+    
+};
+addRemovableCategories();
+
+
+$("input[class='removable-check']").on('click',function(){
+    if(this.checked){
+        $(this).parent().attr("checked",true);
+    }
+    else if(!(this.checked)){
+        $(this).parent().attr("checked",false);
+    }
+});
+
+
 
 
 //Edit old data
@@ -961,6 +1188,20 @@ $(".save-old").on("click",function(){
     crownWork[theIndex].tryIn=$(".crown-parent").eq(3).attr("checked");
     crownWork[theIndex].cementation=$(".crown-parent").eq(4).attr("checked");
 
+    removableWork[theIndex].partial=$(".head").eq(0).attr("checked");
+    removableWork[theIndex].complete=$(".head").eq(1).attr("checked");
+
+    partialWork[theIndex].primaryImpression=$(".partial div").eq(0).attr("checked");
+    partialWork[theIndex].secondaryImpression=$(".partial div").eq(1).attr("checked");
+    partialWork[theIndex].jawRelationship=$(".partial div").eq(2).attr("checked");
+    partialWork[theIndex].tryIn=$(".partial div").eq(3).attr("checked");
+    partialWork[theIndex].delivery=$(".partial div").eq(4).attr("checked");
+
+    completeWork[theIndex].primaryImpression=$(".complete div").eq(0).attr("checked");
+    completeWork[theIndex].secondaryImpression=$(".complete div").eq(1).attr("checked");
+    completeWork[theIndex].jawRelationship=$(".complete div").eq(2).attr("checked");
+    completeWork[theIndex].tryIn=$(".complete div").eq(3).attr("checked");
+    completeWork[theIndex].delivery=$(".complete div").eq(4).attr("checked");
 
     theIndex="";
     $("input[type='text']").val("");
@@ -985,8 +1226,18 @@ $(".save-old").on("click",function(){
             crownCheck[c].checked=false;
             $(crownCheck).eq(c).parent().attr("checked",false);
         }
+        let headCheck=document.querySelectorAll(".head-check");
+        for(let h=0;h<$("input[class='head-check']").length;h++){
+            headCheck[h].checked=false;
+            $(headCheck).eq(h).parent().attr("checked",false);
+        }
+        let removableCheck=document.querySelectorAll(".removable-check");
+        for(let r=0;r<$("input[class='removable-check']").length;r++){
+            removableCheck[r].checked=false;
+            $(removableCheck).eq(r).parent().attr("checked",false);
+        }
         
-        $(".opertive-container , .post-core-container ,.ortho-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container ,.removable-container").hide();
 })
 
 
@@ -998,3 +1249,6 @@ console.log(visits);
 console.log(work);
 console.log(opertiveWork);
 console.log(theIndex);
+console.log(removableWork);
+console.log(partialWork);
+console.log(completeWork);
