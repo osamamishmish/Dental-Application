@@ -28,8 +28,8 @@ let crownWork=[];
 let removableWork=[];
 let partialWork=[];
 let completeWork=[];
-
-
+let newVisits=[];
+let thePatientVisits=[];
 $(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
 $(".edit-button , .accordion").addClass("hide");
 
@@ -50,19 +50,30 @@ $(function(){
 })
 
 
-let theVisitContainer=document.querySelector(".accordion");
+
+
+
+let visitCounter=$(".accordion-item").length;
+let theVisitContainer=document.querySelector(".new-visit-container");
 $('.add-visit').on("click",function(){
-    $(".accordion-item").eq(0).clone().appendTo(".accordion");
-    $(".accordion").children().last().children().eq(0).children().children().text(theVisitContainer.childElementCount+"th"+" "+"visit");
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(0).attr("id","flush-heading"+theVisitContainer.childElementCount);
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).attr("id","flush-collapse"+theVisitContainer.childElementCount);
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).addClass(theVisitContainer.childElementCount+"th"+"-"+"visit").removeClass("first-visit");
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(0).children().attr("data-bs-target","#flush-collapse"+theVisitContainer.childElementCount);
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(0).children().attr("aria-controls","flush-collapse"+theVisitContainer.childElementCount);
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).attr("aria-labelledby","flush-heading"+theVisitContainer.childElementCount);
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).children().eq(0).children().eq(0).addClass(theVisitContainer.childElementCount+"th"+" "+"date").removeClass("first-date");
-    $(".accordion-item").eq(theVisitContainer.childElementCount-1).children().eq(1).children().eq(1).children().eq(0).addClass(theVisitContainer.childElementCount+"th"+" "+"note").removeClass("first-note");
+  visitCounter++;
+  if(visitCounter===10){
+      $(".add-visit").hide();
+  }else{
+    $(".add-visit").show();
+}
+    $(".accordion-item").eq(0).clone().appendTo(".new-visit-container").addClass("the-added-visit");
+    $(".new-visit-container").children().last().children().eq(0).children().children().text(visitCounter+"th"+" "+"visit");
+    $(".the-added-visit").last().children().eq(0).attr("id","flush-heading"+visitCounter);
+    $(".the-added-visit").last().children().eq(1).attr("id","flush-collapse"+visitCounter);
+    $(".the-added-visit").last().children().eq(1).addClass(visitCounter+"th"+"-"+"visit").removeClass("first-visit");
+    $(".the-added-visit").last().children().eq(0).children().attr("data-bs-target","#flush-collapse"+visitCounter);
+    $(".the-added-visit").last().children().eq(0).children().attr("aria-controls","flush-collapse"+visitCounter);
+    $(".the-added-visit").last().children().eq(1).attr("aria-labelledby","flush-heading"+visitCounter);
+    $(".the-added-visit").last().children().eq(1).children().eq(0).children().eq(0).addClass(visitCounter+"th"+"-"+"date").removeClass("first-date").val("");
+    $(".the-added-visit").last().children().eq(1).children().eq(1).children().eq(0).addClass(visitCounter+"th"+"-"+"note").removeClass("first-note").val("");
 })
+
 
 
 
@@ -329,6 +340,9 @@ $(".work").on("click",function(){
 
 
 
+
+
+
 //save Data
 $(".save-button").on("click",function(){
 
@@ -364,10 +378,25 @@ $(".save-button").on("click",function(){
         thirdDate:$(".third-date").val(),
         thirdNotes:$(".third-notes").val(),
         fourthDate:$(".fourth-date").val(),
-        fourthNotes:$(".fourth-notes").val()
+        fourthNotes:$(".fourth-notes").val(),
+        fifthDate:$(".5th-date").val(),
+        fifthNotes:$(".5th-note").val(),
+        sixthDate:$(".6th-date").val(),
+        sixthNotes:$(".6th-note").val(),
+        seventhDate:$(".7th-date").val(),
+        seventhNotes:$(".7th-note").val(),
+        eigthDate:$(".8th-date").val(),
+        eigthNotes:$(".8th-note").val(),
+        ninthDate:$(".9th-date").val(),
+        ninthNotes:$(".9th-note").val(),
+        tenthDate:$(".10th-date").val(),
+        tenthNotes:$(".10th-note").val()
+        
         
     });
-   
+     thePatientVisits.push($(".the-added-visit").clone());
+     $(".new-visit-container").empty();
+    
     work.push({
         OpertiveStatus:$(".check").eq(0).attr("checked"),
         EndodonticTreatmentStatus:$(".check").eq(1).attr("checked"),
@@ -467,7 +496,7 @@ $(".save-button").on("click",function(){
             $(removableCheck).eq(r).parent().attr("checked",false);
         }
          $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
-        
+        return visitCounter=4;
 })
 
 
@@ -527,6 +556,13 @@ $(".search").on("click",function(){
             $(".edit-button").removeClass("hide");
             $(".show-data").addClass("hide");
 
+            thePatientVisits[index].appendTo(".new-visit-container");
+            visitCounter=$('.accordion-item').length;
+           if(visitCounter===10){
+               $(".add-visit").hide();
+           }else{
+               $(".add-visit").show();
+           }
             
             $(".info-style").eq(0).text("Name :"+personalInfo[index].name);
             $(".info-style").eq(1).text("Age :"+personalInfo[index].age);
@@ -537,6 +573,7 @@ $(".search").on("click",function(){
             $(".comments-container textarea").eq(1).val(history[index].HypertensiveComment);
             $(".comments-container textarea").eq(2).val(history[index].HepaticComment);
             $(".comments-container textarea").eq(3).val(history[index].GlandComment);
+
             $(".first-date").val(visits[index].firstDate);
             $(".first-notes").val(visits[index].firstNotes);
             $(".second-date").val(visits[index].secondDate);
@@ -545,6 +582,19 @@ $(".search").on("click",function(){
             $(".third-notes").val(visits[index].thirdNotes);
             $(".fourth-date").val(visits[index].fourthDate);
             $(".fourth-notes").val(visits[index].fourthNotes);
+
+            $(".5th-date").val(visits[index].fifthDate);
+            $(".5th-note").val(visits[index].fifthNotes);
+            $(".6th-date").val(visits[index].sixthDate);
+            $(".6th-note").val(visits[index].sixthNotes);
+            $(".7th-date").val(visits[index].seventhDate);
+            $(".7th-note").val(visits[index].seventhNotes);
+            $(".8th-date").val(visits[index].eigthDate);
+            $(".8th-note").val(visits[index].eigthNotes);
+            $(".9th-date").val(visits[index].ninthDate);
+            $(".9th-note").val(visits[index].ninthNotes);
+            $(".10th-date").val(visits[index].tenthDate);
+            $(".10th-note").val(visits[index].tenthNotes);
             
             if(history[index].Diabetic=="Yes"){
                 $(".the-check").eq(0).text("Yes");
@@ -839,7 +889,7 @@ $(".search").on("click",function(){
 
 
 
-        //    let check=document.querySelectorAll(".complete.removable-parent.removable-check");
+        
            if(completeWork[index].primaryImpression=="checked"){
             check[5].checked=true;
             $('.complete div').eq(0).attr("checked",true);
@@ -896,7 +946,7 @@ $(".search").on("click",function(){
       
 
 
-
+console.log(thePatientVisits);
 
 
 
@@ -1102,18 +1152,7 @@ function addRemovableCategories(){
             }
         });
          $(line).addClass("horizontal");
-        // if(index<5){
-        //     $(categoriesContainer).addClass("partial-parent");
-        // }else{
-        //     $(categoriesContainer).addClass("complete-parent");
-        // }
-         
          $(".partial ,.complete").append($(categoriesContainer));
-        //  if($(categoriesContainer).parent()==$(".partial")){
-        //      $(this).addClass("partial-parent");
-        //  }else{
-        //     $(this).addClass("complete-parent");
-        //  }
          $(".partial ,.complete").append(line); 
          
         }
@@ -1153,6 +1192,20 @@ $(".save-old").on("click",function(){
     visits[theIndex].thirdNotes=$(".third-notes").val();
     visits[theIndex].fourthDate=$(".fourth-date").val();
     visits[theIndex].fourthNotes=$(".fourth-notes").val();
+
+    visits[theIndex].fifthDate=$(".5th-date").val();
+    visits[theIndex].fifthNotes=$(".5th-note").val();
+    visits[theIndex].sixthDate=$(".6th-date").val();
+    visits[theIndex].sixthNotes=$(".6th-note").val();
+    visits[theIndex].seventhDate=$(".7th-date").val();
+    visits[theIndex].seventhNotes=$(".7th-note").val();
+    visits[theIndex].eigthDate=$(".8th-date").val();
+    visits[theIndex].eigthNotes=$(".8th-note").val();
+    visits[theIndex].ninthDate=$(".9th-date").val();
+    visits[theIndex].ninthNotes=$(".9th-note").val();
+    visits[theIndex].tenthDate=$(".10th-date").val();
+    visits[theIndex].tenthNotes=$(".10th-note").val();
+   
 
     work[theIndex].OpertiveStatus=$(".check").eq(0).attr("checked");
     work[theIndex].EndodonticTreatmentStatus=$(".check").eq(1).attr("checked");
@@ -1202,7 +1255,8 @@ $(".save-old").on("click",function(){
     completeWork[theIndex].jawRelationship=$(".complete div").eq(2).attr("checked");
     completeWork[theIndex].tryIn=$(".complete div").eq(3).attr("checked");
     completeWork[theIndex].delivery=$(".complete div").eq(4).attr("checked");
-
+    thePatientVisits[theIndex]=$(".new-visit-container").children().clone();
+    $(".new-visit-container").empty();
     theIndex="";
     $("input[type='text']").val("");
     $("textarea").val("");
@@ -1238,17 +1292,20 @@ $(".save-old").on("click",function(){
         }
         
         $(".opertive-container , .post-core-container ,.ortho-container ,.removable-container").hide();
+       
+        return visitCounter=4;
 })
 
 
 
 
-console.log(personalInfo);
-console.log(history);
-console.log(visits);
-console.log(work);
+console.log("info",personalInfo);
+console.log("history",history);
+console.log("visits",visits);
+console.log("work",work);
 console.log(opertiveWork);
 console.log(theIndex);
 console.log(removableWork);
 console.log(partialWork);
 console.log(completeWork);
+console.log(visitCounter);
