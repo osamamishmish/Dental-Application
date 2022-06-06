@@ -832,98 +832,98 @@ $(".search").on("click",function(){
            }
 
 
-           let partialHeadCheck=document.querySelectorAll(".head-check");
+           let partialHeadCheck=document.querySelector(".partial-head input");
            if(removableWork[index].partial=="checked"){
-            partialHeadCheck[0].checked=true;
+            partialHeadCheck.checked=true;
             $('.partial-head').attr("checked",true);
            }else{
-             partialHeadCheck[0].checked=false;
+             partialHeadCheck.checked=false;
              $('.partial-head').attr("checked",false);
            }
-           let completeHeadCheck=document.querySelectorAll(".head-check");
+           let completeHeadCheck=document.querySelector(".complete-head input");
            if(removableWork[index].complete=="checked"){
-            completeHeadCheck[1].checked=true;
+            completeHeadCheck.checked=true;
             $('.complete-head').attr("checked",true);
            }else{
-             completeHeadCheck[1].checked=false;
+             completeHeadCheck.checked=false;
              $('.complete-head').attr("checked",false);
            }
 
 
-           let check=document.querySelectorAll(".removable-check");
+           let partialCheck=document.querySelectorAll(".partial.removable-parent.removable-check");
            if(partialWork[index].primaryImpression=="checked"){
-            check[0].checked=true;
-            $('.partial div').eq(0).attr("checked",true);
+            partialCheck[0].checked=true;
+            $('.partial.removable-parent').eq(0).attr("checked",true);
            }else{
-             check[0].checked=false;
-             $('.partial div').eq(0).attr("checked",false);
+             partialCheck[0].checked=false;
+             $('.partial.removable-parent').eq(0).attr("checked",false);
            }
            if(partialWork[index].secondaryImpression=="checked"){
-            check[1].checked=true;
-            $('.partial div').eq(1).attr("checked",true);
+            partialCheck[1].checked=true;
+            $('.partial.removable-parent').eq(1).attr("checked",true);
            }else{
-             check[1].checked=false;
-             $('.partial div').eq(1).attr("checked",false);
+             partialCheck[1].checked=false;
+             $('.partial.removable-parent').eq(1).attr("checked",false);
            }
            if(partialWork[index].jawRelationship=="checked"){
-            check[2].checked=true;
-            $('.partial div').eq(2).attr("checked",true);
+            partialCheck[2].checked=true;
+            $('.partial.removable-parent').eq(2).attr("checked",true);
            }else{
-             check[2].checked=false;
-             $('.partial div').eq(2).attr("checked",false);
+             partialCheck[2].checked=false;
+             $('.partial.removable-parent').eq(2).attr("checked",false);
            }
            if(partialWork[index].tryIn=="checked"){
-            check[3].checked=true;
-            $('.partial div').eq(3).attr("checked",true);
+            partialCheck[3].checked=true;
+            $('.partial.removable-parent').eq(3).attr("checked",true);
            }else{
-             check[3].checked=false;
-             $('.partial div').eq(3).attr("checked",false);
+             partialCheck[3].checked=false;
+             $('.partial.removable-parent').eq(3).attr("checked",false);
            }
            if(partialWork[index].delivery=="checked"){
-            check[4].checked=true;
-            $('.partial div').eq(4).attr("checked",true);
+            partialCheck[4].checked=true;
+            $('.partial.removable-parent').eq(4).attr("checked",true);
            }else{
-             check[4].checked=false;
-             $('.partial div').eq(4).attr("checked",false);
+             partialCheck[4].checked=false;
+             $('.partial.removable-parent').eq(4).attr("checked",false);
            }
 
 
 
-        
+           let completeCheck=document.querySelectorAll(".complete.removable-parent.removable-check");
            if(completeWork[index].primaryImpression=="checked"){
-            check[5].checked=true;
-            $('.complete div').eq(0).attr("checked",true);
+            completeCheck[0].checked=true;
+            $('.complete.removable-parent').eq(0).attr("checked",true);
            }else{
-             check[5].checked=false;
-             $('.complete div').eq(0).attr("checked",false);
+             completeCheck[0].checked=false;
+             $('.complete.removable-parent').eq(0).attr("checked",false);
            }
            if(completeWork[index].secondaryImpression=="checked"){
-            check[6].checked=true;
-            $('.complete div').eq(1).attr("checked",true);
+            completeCheck[1].checked=true;
+            $('.complete.removable-parent').eq(1).attr("checked",true);
            }else{
-             check[6].checked=false;
-             $('.complete div').eq(1).attr("checked",false);
+             completeCheck[1].checked=false;
+             $('.complete.removable-parent').eq(1).attr("checked",false);
            }
            if(completeWork[index].jawRelationship=="checked"){
-            check[7].checked=true;
-            $('.complete div').eq(2).attr("checked",true);
+            completeCheck[2].checked=true;
+            $('.complete.removable-parent').eq(2).attr("checked",true);
            }else{
-             check[7].checked=false;
-             $('.complete div').eq(2).attr("checked",false);
+             completeCheck[2].checked=false;
+             $('.complete.removable-parent').eq(2).attr("checked",false);
            }
            if(completeWork[index].tryIn=="checked"){
-            check[8].checked=true;
-            $('.complete div').eq(3).attr("checked",true);
+            completeCheck[3].checked=true;
+            $('.complete.removable-parent').eq(3).attr("checked",true);
            }else{
-             check[8].checked=false;
-             $('.complete div').eq(3).attr("checked",false);
+             completeCheck[3].checked=false;
+             $('.complete.removable-parent').eq(3).attr("checked",false);
            }
            if(completeWork[index].delivery=="checked"){
-            check[9].checked=true;
-            $('.complete div').eq(4).attr("checked",true);
+            completeCheck[4].checked=true;
+            $('.complete.removable-parent').eq(4).attr("checked",true);
            }else{
-             check[9].checked=false;
-             $('.complete div').eq(4).attr("checked",false);
+             completeCheck[4].checked=false;
+             $('.complete.removable-parent').eq(4).attr("checked",false);
            }
 
 
@@ -1161,7 +1161,7 @@ function addRemovableCategories(){
 addRemovableCategories();
 
 
-$("input[class='removable-check']").on('click',function(){
+$("input[class='head-check']").on('click',function(){
     if(this.checked){
         $(this).parent().attr("checked",true);
     }
@@ -1244,17 +1244,19 @@ $(".save-old").on("click",function(){
     removableWork[theIndex].partial=$(".head").eq(0).attr("checked");
     removableWork[theIndex].complete=$(".head").eq(1).attr("checked");
 
-    partialWork[theIndex].primaryImpression=$(".partial div").eq(0).attr("checked");
-    partialWork[theIndex].secondaryImpression=$(".partial div").eq(1).attr("checked");
-    partialWork[theIndex].jawRelationship=$(".partial div").eq(2).attr("checked");
-    partialWork[theIndex].tryIn=$(".partial div").eq(3).attr("checked");
-    partialWork[theIndex].delivery=$(".partial div").eq(4).attr("checked");
+    partialWork[theIndex].primaryImpression=$(".partial.removable-parent").eq(0).attr("checked");
+    partialWork[theIndex].secondaryImpression=$(".partial.removable-parent").eq(1).attr("checked");
+    partialWork[theIndex].jawRelationship=$(".partial.removable-parent").eq(2).attr("checked");
+    partialWork[theIndex].tryIn=$(".partial.removable-parent").eq(3).attr("checked");
+    partialWork[theIndex].delivery=$(".partial.removable-parent").eq(4).attr("checked");
 
-    completeWork[theIndex].primaryImpression=$(".complete div").eq(0).attr("checked");
-    completeWork[theIndex].secondaryImpression=$(".complete div").eq(1).attr("checked");
-    completeWork[theIndex].jawRelationship=$(".complete div").eq(2).attr("checked");
-    completeWork[theIndex].tryIn=$(".complete div").eq(3).attr("checked");
-    completeWork[theIndex].delivery=$(".complete div").eq(4).attr("checked");
+    completeWork[theIndex].primaryImpression=$(".complete.removable-parent").eq(0).attr("checked");
+    completeWork[theIndex].secondaryImpression=$(".complete.removable-parent").eq(1).attr("checked");
+    completeWork[theIndex].jawRelationship=$(".complete.removable-parent").eq(2).attr("checked");
+    completeWork[theIndex].tryIn=$(".complete.removable-parent").eq(3).attr("checked");
+    completeWork[theIndex].delivery=$(".complete.removable-parent").eq(4).attr("checked");
+
+
     thePatientVisits[theIndex]=$(".new-visit-container").children().clone();
     $(".new-visit-container").empty();
     theIndex="";
