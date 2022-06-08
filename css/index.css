@@ -142,24 +142,24 @@ ul li{
     width:100%;
     justify-content:space-between;
 } */
-.opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container , .partial , .complete ,.removable-cat {
+.opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container , .partial , .complete ,.removable-cat ,.endo-container{
     display:flex;
     flex-flow:column;
     width:100%;
     
     
 }
-.category-parent , .post-core-parent ,.ortho-parent ,.peudo-parent ,.crown-parent ,.partial-parent ,.complete-parent ,.partial-head ,.complete-head ,.removable-parent{
+.category-parent , .post-core-parent ,.ortho-parent ,.peudo-parent ,.crown-parent ,.partial-parent ,.complete-parent ,.partial-head ,.complete-head ,.removable-parent,.endo-parent{
     display: flex;
     flex-flow:row;
     justify-content:space-between;
 }
-.opertive-cont , .post-core-cont ,.ortho-cont ,.peudo-cont ,.crown-cont ,.partial-cont ,.complete-cont ,.partial-head h5  ,.complete-head h5{
+.opertive-cont , .post-core-cont ,.ortho-cont ,.peudo-cont ,.crown-cont ,.partial-cont ,.complete-cont ,.partial-head h5  ,.complete-head h5 ,.endo-head{
     display:flex;
     justify-content:flex-start;
     
 }
-.opertive-check ,.post-core-check , .ortho-check ,.peudo-check ,.crown-check ,.partial-check , .complete-check ,.partial-head input ,.complete-head input{
+.opertive-check ,.post-core-check , .ortho-check ,.peudo-check ,.crown-check ,.partial-check , .complete-check ,.partial-head input ,.complete-head input ,.endo-check{
     display:flex;
     align-self:center;
     justify-content:flex-end;
@@ -175,5 +175,14 @@ ul li{
 .info , .history ,.visits ,.work{
     font-size:25px;
 }
-
+.comment-cont{
+    display:flex;
+    justify-content:center;
+    margin-left:auto;
+    width:70%;
+}
+.endo-comment{
+    width:80%;
+    margin-right:auto;
+}
 

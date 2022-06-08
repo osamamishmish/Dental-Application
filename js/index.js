@@ -18,7 +18,6 @@ let workStatus=[
 let opertive=["Composite","Amalgum","Glass ionmer"];  
 let postCore=["fiberPost","metalPost","custom made post"];
 let crown=["primary impression","reduction","secondary impression","try in","cementation"];
-
 let orthoDontics=["upper arch","lower arch","Both arches"];  
 let opertiveWork=[];
 let postCoreWork=[];
@@ -30,7 +29,8 @@ let partialWork=[];
 let completeWork=[];
 let newVisits=[];
 let thePatientVisits=[];
-$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+let endoWork=[];
+$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
 $(".edit-button , .accordion").addClass("hide");
 
 
@@ -42,8 +42,9 @@ $(function(){
         $(".show-data ,.card").addClass("hide");
         $("textarea").val("");
         $("input[type='text']").val("");
+        $(".add-visit").hide();
         
-        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
        
     });
     
@@ -52,7 +53,7 @@ $(function(){
 
 
 
-
+//Add new visits
 let visitCounter=$(".accordion-item").length;
 let theVisitContainer=document.querySelector(".new-visit-container");
 $('.add-visit').on("click",function(){
@@ -87,7 +88,8 @@ $(".home").on("click",function(){
     $(".add , .old").show();
     $("textarea").val("");
     $("input[type='text']").val("");
-    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+    $(".add-visit").hide();
+    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
     
 })
 
@@ -273,6 +275,11 @@ $(".complete-head h5").on("click",function(){
     $(".removable-cat").hide();
     $(".complete").show();
 })
+$(".endo").on("click",function(){
+    $(".categories").hide();
+    $(".endo-container").show();
+   $(".endo-parent").show();
+})
 
 
 
@@ -290,7 +297,8 @@ $(".add-patient").on("click",function(){
     addCategories();
     $(".save-button").show();
     $(".save-old , .categories , .category-parent ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container").hide();
-    $(".add , .history-container ,.visits-info ,.add-visit").addClass("hide");
+    $(".add , .history-container ,.visits-info").addClass("hide");
+    $(".add-visit").hide();
     $(".add-data , .card").toggleClass("hide");
     $(".card-data li button").addClass("info-buttons");
     $(".info").toggleClass("clicked");
@@ -310,9 +318,10 @@ $(".info").on("click",function(){
     $(this).removeClass("hide");
     $(this).toggleClass("clicked");
     $(".history ,.visits ,.work").removeClass("clicked");
-    $(".history-container ,.accordion ,.visits-info ,.add-visit").addClass("hide");
+    $(".history-container ,.accordion ,.visits-info ").addClass("hide");
+    $(".add-visit").hide();
     $(".info-container").removeClass("hide");
-    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
 });
 
 
@@ -321,18 +330,20 @@ $(".visits").on("click",function(){
     $(this).toggleClass("clicked");
     $('.history-container ,.info-container').addClass("hide");
     $(".info ,.history , .work").removeClass("clicked");
-    $(".accordion ,.visits-info ,.add-visit").removeClass("hide");
-    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+    $(".accordion ,.visits-info").removeClass("hide");
+    $(".add-visit").show();
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
 })
 
 
 //work
 $(".work").on("click",function(){
     $(this).toggleClass("clicked");
-    $('.history-container ,.info-container ,.accordion ,.visits-info ,.add-visit').addClass("hide");
+    $('.history-container ,.info-container ,.accordion ,.visits-info').addClass("hide");
+    $(".add-visit").hide();
     $(".info ,.history , .visits").removeClass("clicked");
     $(".categories").show();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
 });
 
 
@@ -349,7 +360,7 @@ $(".save-button").on("click",function(){
     $(this).addClass("hide");
     $(".add-data").toggleClass("hide");
     $(".card").toggleClass("hide");
-    
+    $(".add-visit").hide();
     
     personalInfo.push({
         name:$("#input-name").val(),
@@ -457,6 +468,20 @@ $(".save-button").on("click",function(){
         tryIn:$(".complete div").eq(3).attr("checked"),
         delivery:$(".complete div").eq(4).attr("checked")
     })
+    endoWork.push({
+        accessCavity:$(".endo-parent").eq(0).attr("checked"),
+        accessCavityComment:$(".endo-comment").eq(0).val(),
+        glidePath:$(".endo-parent").eq(1).attr("checked"),
+        glidePathComment:$(".endo-comment").eq(1).val(),
+        cleaningAndShaping:$(".endo-parent").eq(2).attr("checked"),
+        cleaningAndShapingComment:$(".endo-comment").eq(2).val(),
+        irrigation:$(".endo-parent").eq(3).attr("checked"),
+        irrigationComment:$(".endo-comment").eq(3).val(),
+        obturation:$(".endo-parent").eq(4).attr("checked"),
+        obturationComment:$(".endo-comment").eq(4).val(),
+        finalRestoration:$(".endo-parent").eq(5).attr("checked"),
+        finalRestorationComment:$(".endo-comment").eq(5).val()
+    });
     $("input[type='text']").val("");
     $("textarea").val("");
    
@@ -495,7 +520,12 @@ $(".save-button").on("click",function(){
             removableCheck[r].checked=false;
             $(removableCheck).eq(r).parent().attr("checked",false);
         }
-         $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+        let endoCheck=document.querySelectorAll(".endo-check");
+        for(let r=0;r<$("input[class='endo-check']").length;r++){
+            endoCheck[r].checked=false;
+            $(endoCheck).eq(r).parent().attr("checked",false);
+        }
+         $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
         return visitCounter=4;
 })
 
@@ -506,13 +536,14 @@ $(".save-button").on("click",function(){
 //Search Old Patients
 $(".old").on("click",function(){
     $(".show-data").removeClass("hide");
-    $(".add-data ,.add-visit").addClass("hide");
+    $(".add-data").addClass("hide");
+    $(".add-visit").hide();
     $(".card").addClass("hide");
      $(".add").removeClass("hide");
      $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
     
 });
 
@@ -533,7 +564,7 @@ let theIndex;
 //Get patient info
 $(".search").on("click",function(){
     $("div[class='check-cont']").empty();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
     historyCheck();
     for(let index=0 ; index<personalInfo.length ; index++){
         if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
@@ -550,8 +581,9 @@ $(".search").on("click",function(){
             $(".history-container").addClass("hide");
             $(".categories").hide();
             $(".info-container").removeClass("hide");
-            $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
-            $(".accordion ,.add-visit").addClass("hide");
+            $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+            $(".accordion").addClass("hide");
+            $(".add-visit").hide();
             $(".save-button").addClass("hide");
             $(".edit-button").removeClass("hide");
             $(".show-data").addClass("hide");
@@ -596,6 +628,13 @@ $(".search").on("click",function(){
             $(".10th-date").val(visits[index].tenthDate);
             $(".10th-note").val(visits[index].tenthNotes);
             
+
+            $(".endo-comment").eq(0).val(endoWork[index].accessCavityComment);
+            $(".endo-comment").eq(1).val(endoWork[index].glidePathComment);
+            $(".endo-comment").eq(2).val(endoWork[index].cleaningAndShapingComment);
+            $(".endo-comment").eq(3).val(endoWork[index].irrigationComment);
+            $(".endo-comment").eq(4).val(endoWork[index].obturationComment);
+            $(".endo-comment").eq(5).val(endoWork[index].finalRestorationComment);
             if(history[index].Diabetic=="Yes"){
                 $(".the-check").eq(0).text("Yes");
                 
@@ -928,6 +967,50 @@ $(".search").on("click",function(){
 
 
 
+           let endoCheck=document.querySelectorAll(".endo-check");
+           if(endoWork[index].accessCavity=="checked"){
+               endoCheck[0].checked=true;
+               $(".endo-parent").eq(0).attr("checked",true);
+           }else{
+            endoCheck[0].checked=false;
+            $(".endo-parent").eq(0).attr("checked",false);
+           }
+           if(endoWork[index].glidePath=="checked"){
+            endoCheck[1].checked=true;
+            $(".endo-parent").eq(1).attr("checked",true);
+            }else{
+            endoCheck[1].checked=false;
+            $(".endo-parent").eq(1).attr("checked",false);
+        }
+        if(endoWork[index].cleaningAndShaping=="checked"){
+            endoCheck[2].checked=true;
+            $(".endo-parent").eq(2).attr("checked",true);
+            }else{
+            endoCheck[2].checked=false;
+            $(".endo-parent").eq(2).attr("checked",false);
+        }
+        if(endoWork[index].irrigation=="checked"){
+            endoCheck[3].checked=true;
+            $(".endo-parent").eq(3).attr("checked",true);
+            }else{
+            endoCheck[3].checked=false;
+            $(".endo-parent").eq(3).attr("checked",false);
+        }
+        if(endoWork[index].obturation=="checked"){
+            endoCheck[4].checked=true;
+            $(".endo-parent").eq(4).attr("checked",true);
+            }else{
+            endoCheck[4].checked=false;
+            $(".endo-parent").eq(4).attr("checked",false);
+        }
+        if(endoWork[index].finalRestoration=="checked"){
+            endoCheck[5].checked=true;
+            $(".endo-parent").eq(5).attr("checked",true);
+            }else{
+            endoCheck[5].checked=false;
+            $(".endo-parent").eq(5).attr("checked",false);
+        }
+
 
         }  
         
@@ -941,7 +1024,7 @@ $(".search").on("click",function(){
 
 
 
-
+console.log(endoWork);
 
       
 
@@ -957,9 +1040,10 @@ $(".history").on("click",function(){
     $(".history-container").removeClass("hide");
     
     $(".info ,.visits ,.work").removeClass("clicked");
-    $(".accordion ,.add-visit").addClass("hide");
+    $(".accordion").addClass("hide");
+    $(".add-visit").hide();
     $(".categories").hide();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
 
    
 });
@@ -1202,6 +1286,44 @@ addCompleteCategories();
 
 
 
+let endo=[
+    "Access cavity",
+    "Glide Path",
+    "Cleaning & Shaping",
+    "Irrigation",
+    "Obturation",
+    "Final restoration"
+];
+function addEndoCategories(){
+    for (let index=0 ; index<endo.length ; index++){
+        let theHead=document.createElement("h5"),
+            textField=document.createElement('textarea'),
+            commentContainer=document.createElement("div"),
+            checkField=document.createElement("input"),
+            line=document.createElement("hr"),
+            container=document.createElement("div");
+    $(container).appendTo(".endo-container").addClass("endo-parent");
+    checkField.type="checkbox";
+    $(theHead).appendTo(container).text(endo[index]).addClass("endo-head");
+    $(textField).appendTo(commentContainer).addClass("endo-comment");
+    $(commentContainer).appendTo(container).addClass("comment-cont");
+    $(checkField).appendTo(container).addClass("endo-check").on('click',function(){
+        if(this.checked){
+            $(this).parent().attr("checked",true);
+        }
+        else if(!(this.checked)){
+            $(this).parent().attr("checked",false);
+        }
+    });
+    $(line).appendTo(".endo-container").addClass("horizontal");
+    }
+}
+addEndoCategories();
+
+
+
+
+
 $("input[class='head-check']").on('click',function(){
     if(this.checked){
         $(this).parent().attr("checked",true);
@@ -1218,7 +1340,7 @@ $("input[class='head-check']").on('click',function(){
 $(".save-old").on("click",function(){
     $(".card").addClass("hide");
     $(this).addClass("hide");
-
+    $(".add-visit").hide();
     $(".show-data").toggleClass("hide");
     
     history[theIndex].DiabeticComment=$(".comments-container textarea").eq(0).val();
@@ -1297,6 +1419,18 @@ $(".save-old").on("click",function(){
     completeWork[theIndex].tryIn=$(".complete-parent").eq(3).attr("checked");
     completeWork[theIndex].delivery=$(".complete-parent").eq(4).attr("checked");
 
+    endoWork[theIndex].accessCavity=$(".endo-parent").eq(0).attr("checked");
+    endoWork[theIndex].glidePath=$(".endo-parent").eq(1).attr("checked");
+    endoWork[theIndex].cleaningAndShaping=$(".endo-parent").eq(2).attr("checked");
+    endoWork[theIndex].irrigation=$(".endo-parent").eq(3).attr("checked");
+    endoWork[theIndex].obturation=$(".endo-parent").eq(4).attr("checked");
+    endoWork[theIndex].finalRestoration=$(".endo-parent").eq(5).attr("checked");
+    endoWork[theIndex].accessCavityComment=$(".endo-comment").eq(0).val();
+    endoWork[theIndex].glidePathComment=$(".endo-comment").eq(1).val();
+    endoWork[theIndex].cleaningAndShapingComment=$(".endo-comment").eq(2).val();
+    endoWork[theIndex].irrigationComment=$(".endo-comment").eq(3).val();
+    endoWork[theIndex].obturationComment=$(".endo-comment").eq(4).val();
+    endoWork[theIndex].finalRestorationComment=$(".endo-comment").eq(5).val();
 
     thePatientVisits[theIndex]=$(".new-visit-container").children().clone();
     $(".new-visit-container").empty();
@@ -1332,6 +1466,11 @@ $(".save-old").on("click",function(){
         for(let r=0;r<$("input[class='removable-check']").length;r++){
             removableCheck[r].checked=false;
             $(removableCheck).eq(r).parent().attr("checked",false);
+        }
+        let endoCheck=document.querySelectorAll(".endo-check");
+        for(let r=0;r<$("input[class='endo-check']").length;r++){
+            endoCheck[r].checked=false;
+            $(endoCheck).eq(r).parent().attr("checked",false);
         }
         
         $(".opertive-container , .post-core-container ,.ortho-container ,.removable-container").hide();
