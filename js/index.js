@@ -57,6 +57,7 @@ $(function(){
 let visitCounter=$(".accordion-item").length;
 let theVisitContainer=document.querySelector(".new-visit-container");
 $('.add-visit').on("click",function(){
+    // visitCounter=$(".accordion-item").length;
   visitCounter++;
   if(visitCounter===10){
       $(".add-visit").hide();
@@ -309,7 +310,7 @@ $(".add-patient").on("click",function(){
         $(".info-style").eq(2).text("Gender: "+$("#input-gender").val());
         $(".info-style").eq(3).text("Date: "+$("#input-date").val());
         $(".info-style").eq(4).text("Phone Number: "+$("#input-phone").val());
-       
+       visitCounter=4;
 });
 
 
@@ -331,7 +332,7 @@ $(".visits").on("click",function(){
     $('.history-container ,.info-container').addClass("hide");
     $(".info ,.history , .work").removeClass("clicked");
     $(".accordion ,.visits-info").removeClass("hide");
-    visitCounter=$('.accordion-item').length;
+    // visitCounter=$('.accordion-item').length;
            if(visitCounter===10){
                $(".add-visit").hide();
            }else{
@@ -596,11 +597,6 @@ $(".search").on("click",function(){
 
             thePatientVisits[index].appendTo(".new-visit-container");
             visitCounter=$('.accordion-item').length;
-           if(visitCounter===10){
-               $(".add-visit").hide();
-           }else{
-               $(".add-visit").show();
-           }
             
             $(".info-style").eq(0).text("Name :"+personalInfo[index].name);
             $(".info-style").eq(1).text("Age :"+personalInfo[index].age);
