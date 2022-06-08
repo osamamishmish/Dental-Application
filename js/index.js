@@ -30,7 +30,7 @@ let completeWork=[];
 let newVisits=[];
 let thePatientVisits=[];
 let endoWork=[];
-$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.add-visit").hide();
 $(".edit-button , .accordion").addClass("hide");
 
 
@@ -331,7 +331,13 @@ $(".visits").on("click",function(){
     $('.history-container ,.info-container').addClass("hide");
     $(".info ,.history , .work").removeClass("clicked");
     $(".accordion ,.visits-info").removeClass("hide");
-    $(".add-visit").show();
+    visitCounter=$('.accordion-item').length;
+           if(visitCounter===10){
+               $(".add-visit").hide();
+           }else{
+               $(".add-visit").show();
+           }
+    // $(".add-visit").show();
     $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
 })
 
