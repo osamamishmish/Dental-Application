@@ -30,7 +30,9 @@ let completeWork=[];
 let newVisits=[];
 let thePatientVisits=[];
 let endoWork=[];
-$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.add-visit").hide();
+let glideWork=[];
+let cleaningWork=[];
+$(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.add-visit ,.glide-cont ,.cleaning-shaping-cont").hide();
 $(".edit-button , .accordion").addClass("hide");
 
 
@@ -44,7 +46,7 @@ $(function(){
         $("input[type='text']").val("");
         $(".add-visit").hide();
         
-        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont .cleaning-shaping-cont").hide();
        
     });
     
@@ -90,7 +92,7 @@ $(".home").on("click",function(){
     $("textarea").val("");
     $("input[type='text']").val("");
     $(".add-visit").hide();
-    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container .glide-cont .cleaning-shaping-cont").hide();
     
 })
 
@@ -224,7 +226,7 @@ function addCategories(){
 $('.opertive').on("click",function(){
     
     
-    $(".categories").hide();
+    $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".opertive-container").show();
     $(".category-parent").show();
 
@@ -232,21 +234,21 @@ $('.opertive').on("click",function(){
 
 //show post and core categories
 $(".post-core").on("click",function(){
-    $(".categories").hide();
+    $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".post-core-container").show();
     $(".post-core-parent").show();
 });
 
 
 $(".ortho").on("click",function(){
-    $(".categories").hide();
+    $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".ortho-container").show();
     $(".ortho-parent").show();
 });
 
 
 $(".peudo").on("click",function(){
-    $(".categories").hide();
+    $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".peudo-container").show();
     $(".peudo-parent").show();
 });
@@ -254,13 +256,13 @@ $(".peudo").on("click",function(){
 
 
 $(".crown").on("click",function(){
-    $(".categories").hide();
+    $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".crown-container").show();
     $(".crown-parent").show();
 });
 
 $(".removable").on("click",function(){
-    $(".categories").hide();
+    $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".removable-container").show();
     $(".partial , .complete").hide();
    $(".removable-cat").show();
@@ -268,18 +270,31 @@ $(".removable").on("click",function(){
 });
 $(".partial-head h5").on("click",function(){
     $(".removable-container").show();
-    $(".removable-cat").hide();
+    $(".removable-cat ,.glide-cont .cleaning-shaping-cont").hide();
     $(".partial").show();
 })
 $(".complete-head h5").on("click",function(){
     $(".removable-container").show();
-    $(".removable-cat").hide();
+    $(".removable-cat ,.glide-cont .cleaning-shaping-cont").hide();
     $(".complete").show();
 })
 $(".endo").on("click",function(){
-    $(".categories").hide();
+    $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".endo-container").show();
    $(".endo-parent").show();
+   $(".glide-cont").hide();
+})
+$(".endo-head").eq(1).on("click",function(){
+    $(".categories").hide();
+     $(".endo-container, .cleaning-shaping-cont").hide();
+   $(".endo-parent").hide();
+   $(".glide-cont").show();
+})
+$(".endo-head").eq(2).on("click",function(){
+    $(".categories").hide();
+     $(".endo-container, .glide-cont").hide();
+   $(".endo-parent").hide();
+   $(".cleaning-shaping-cont").show();
 })
 
 
@@ -322,7 +337,7 @@ $(".info").on("click",function(){
     $(".history-container ,.accordion ,.visits-info ").addClass("hide");
     $(".add-visit").hide();
     $(".info-container").removeClass("hide");
-    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont").hide();
 });
 
 
@@ -339,7 +354,7 @@ $(".visits").on("click",function(){
                $(".add-visit").show();
            }
     // $(".add-visit").show();
-    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+    $(".categories ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont").hide();
 })
 
 
@@ -350,7 +365,7 @@ $(".work").on("click",function(){
     $(".add-visit").hide();
     $(".info ,.history , .visits").removeClass("clicked");
     $(".categories").show();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont").hide();
 });
 
 
@@ -489,6 +504,27 @@ $(".save-button").on("click",function(){
         finalRestoration:$(".endo-parent").eq(5).attr("checked"),
         finalRestorationComment:$(".endo-comment").eq(5).val()
     });
+    glideWork.push({
+        file8:$(".glide-container").eq(0).attr("checked"),
+        file10:$(".glide-container").eq(1).attr("checked"),
+        file15:$(".glide-container").eq(2).attr("checked"),
+        file20:$(".glide-container").eq(3).attr("checked"),
+        file25:$(".glide-container").eq(4).attr("checked")
+    });
+    cleaningWork.push({
+        orficeOpener:$(".cleaning-parent").eq(0).attr("checked"),
+        file20Taper4:$(".cleaning-parent").eq(1).attr("checked"),
+        file25Taper4:$(".cleaning-parent").eq(2).attr("checked"),
+        file30Taper4:$(".cleaning-parent").eq(3).attr("checked"),
+        file35Taper4:$(".cleaning-parent").eq(4).attr("checked"),
+        file40Taper4:$(".cleaning-parent").eq(5).attr("checked"),
+        file20Taper6:$(".cleaning-parent").eq(6).attr("checked"),
+        file25Taper6:$(".cleaning-parent").eq(7).attr("checked"),
+        file30Taper6:$(".cleaning-parent").eq(8).attr("checked"),
+        file35Taper6:$(".cleaning-parent").eq(9).attr("checked"),
+        file40Taper6:$(".cleaning-parent").eq(10).attr("checked")
+        
+    })
     $("input[type='text']").val("");
     $("textarea").val("");
    
@@ -532,7 +568,17 @@ $(".save-button").on("click",function(){
             endoCheck[r].checked=false;
             $(endoCheck).eq(r).parent().attr("checked",false);
         }
-         $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+        let glideCheck=document.querySelectorAll(".glide-check");
+        for(let r=0;r<$("input[class='glide-check']").length;r++){
+            glideCheck[r].checked=false;
+            $(glideCheck).eq(r).parent().attr("checked",false);
+        }
+        let cleaningCheck=document.querySelectorAll(".cleaning-check");
+        for(let r=0;r<$("input[class='cleaning-check']").length;r++){
+            cleaningCheck[r].checked=false;
+            $(cleaningCheck).eq(r).parent().attr("checked",false);
+        }
+         $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont").hide();
         return visitCounter=4;
 })
 
@@ -550,7 +596,7 @@ $(".old").on("click",function(){
      $("textarea").val("");
         $("input[type='text']").val("");
         
-        $(".opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont").hide();
     
 });
 
@@ -571,7 +617,7 @@ let theIndex;
 //Get patient info
 $(".search").on("click",function(){
     $("div[class='check-cont']").empty();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont").hide();
     historyCheck();
     for(let index=0 ; index<personalInfo.length ; index++){
         if($(".old-patient-number").val()==personalInfo[index].phone || $(".old-patient-name").val()==personalInfo[index].name){
@@ -1014,6 +1060,126 @@ $(".search").on("click",function(){
         }
 
 
+        let glideCheck=document.querySelectorAll(".glide-check");
+           if(glideWork[index].file8=="checked"){
+            glideCheck[0].checked=true;
+            $('.glide-container').eq(0).attr("checked",true);
+           }else{
+             glideCheck[0].checked=false;
+             $('.glide-container').eq(0).attr("checked",false);
+           }
+           if(glideWork[index].file10=="checked"){
+            glideCheck[1].checked=true;
+            $('.glide-container').eq(1).attr("checked",true);
+           }else{
+             glideCheck[1].checked=false;
+             $('.glide-container').eq(1).attr("checked",false);
+           }
+           if(glideWork[index].file15=="checked"){
+            glideCheck[2].checked=true;
+            $('.glide-container').eq(2).attr("checked",true);
+           }else{
+             glideCheck[2].checked=false;
+             $('.glide-container').eq(2).attr("checked",false);
+           }
+           if(glideWork[index].file20=="checked"){
+            glideCheck[3].checked=true;
+            $('.glide-container').eq(3).attr("checked",true);
+           }else{
+             glideCheck[3].checked=false;
+             $('.glide-container').eq(3).attr("checked",false);
+           }
+           if(glideWork[index].file25=="checked"){
+            glideCheck[4].checked=true;
+            $('.glide-container').eq(4).attr("checked",true);
+           }else{
+             glideCheck[4].checked=false;
+             $('.glide-container').eq(4).attr("checked",false);
+           }
+
+
+
+
+
+           let cleaningCheck=document.querySelectorAll(".cleaning-check");
+           if(cleaningWork[index].orficeOpener=="checked"){
+            cleaningCheck[0].checked=true;
+            $('.cleaning-container').eq(0).attr("checked",true);
+           }else{
+             cleaningCheck[0].checked=false;
+             $('.cleaning-container').eq(0).attr("checked",false);
+           }
+           if(cleaningWork[index].file20Taper4=="checked"){
+            cleaningCheck[1].checked=true;
+            $('.cleaning-container').eq(1).attr("checked",true);
+           }else{
+             cleaningCheck[1].checked=false;
+             $('.cleaning-container').eq(1).attr("checked",false);
+           }
+           if(cleaningWork[index].file25Taper4=="checked"){
+            cleaningCheck[2].checked=true;
+            $('.cleaning-container').eq(2).attr("checked",true);
+           }else{
+             cleaningCheck[2].checked=false;
+             $('.cleaning-container').eq(2).attr("checked",false);
+           }
+           if(cleaningWork[index].file30Taper4=="checked"){
+            cleaningCheck[3].checked=true;
+            $('.cleaning-container').eq(3).attr("checked",true);
+           }else{
+             cleaningCheck[3].checked=false;
+             $('.cleaning-container').eq(3).attr("checked",false);
+           }
+           if(cleaningWork[index].file35Taper4=="checked"){
+            cleaningCheck[4].checked=true;
+            $('.cleaning-container').eq(4).attr("checked",true);
+           }else{
+             cleaningCheck[4].checked=false;
+             $('.cleaning-container').eq(4).attr("checked",false);
+           }
+           if(cleaningWork[index].file40Taper4=="checked"){
+            cleaningCheck[5].checked=true;
+            $('.cleaning-container').eq(5).attr("checked",true);
+           }else{
+             cleaningCheck[5].checked=false;
+             $('.cleaning-container').eq(5).attr("checked",false);
+           }
+           if(cleaningWork[index].file20Taper6=="checked"){
+            cleaningCheck[6].checked=true;
+            $('.cleaning-container').eq(6).attr("checked",true);
+           }else{
+             cleaningCheck[6].checked=false;
+             $('.cleaning-container').eq(6).attr("checked",false);
+           }
+           if(cleaningWork[index].file25Taper6=="checked"){
+            cleaningCheck[7].checked=true;
+            $('.cleaning-container').eq(7).attr("checked",true);
+           }else{
+             cleaningCheck[7].checked=false;
+             $('.cleaning-container').eq(7).attr("checked",false);
+           }
+           if(cleaningWork[index].file30Taper6=="checked"){
+            cleaningCheck[8].checked=true;
+            $('.cleaning-container').eq(8).attr("checked",true);
+           }else{
+             cleaningCheck[8].checked=false;
+             $('.cleaning-container').eq(8).attr("checked",false);
+           }
+           if(cleaningWork[index].file35Taper6=="checked"){
+            cleaningCheck[9].checked=true;
+            $('.cleaning-container').eq(9).attr("checked",true);
+           }else{
+             cleaningCheck[9].checked=false;
+             $('.cleaning-container').eq(9).attr("checked",false);
+           }
+           if(cleaningWork[index].file40Taper6=="checked"){
+            cleaningCheck[10].checked=true;
+            $('.cleaning-container').eq(10).attr("checked",true);
+           }else{
+             cleaningCheck[10].checked=false;
+             $('.cleaning-container').eq(10).attr("checked",false);
+           }
+
         }  
         
     }
@@ -1045,7 +1211,7 @@ $(".history").on("click",function(){
     $(".accordion").addClass("hide");
     $(".add-visit").hide();
     $(".categories").hide();
-    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container").hide();
+    $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont").hide();
 
    
 });
@@ -1325,6 +1491,76 @@ addEndoCategories();
 
 
 
+let glidePath=[
+    "file 8 manual",
+    "file 10 manual",
+    "file 15 manual",
+    "file 20 manual",
+    "file 25 manual"
+];
+function glidePathCategories(){
+for(let index=0 ;index<glidePath.length ; index++){
+    let head=document.createElement("h5"),
+        check=document.createElement("input"),
+        line=document.createElement("hr"),
+        glideContainer=document.createElement("div");
+        check.type="checkbox";
+    $(head).appendTo(glideContainer).addClass("glide-head").text(glidePath[index]);
+    $(check).appendTo(glideContainer).addClass("glide-check").on('click',function(){
+        if(this.checked){
+            $(this).parent().attr("checked",true);
+        }
+        else if(!(this.checked)){
+            $(this).parent().attr("checked",false);
+        }
+    });
+    $(glideContainer).appendTo(".glide-cont").addClass("glide-container");
+    $(line).appendTo(".glide-cont").addClass("horizontal");
+}
+}
+glidePathCategories();
+
+
+
+
+
+let cleaningAndShaping=[
+    "Orfice opener",
+    "file 20 taper4",
+    "file 25 taper4",
+    "file 30 taper4",
+    "file 35 taper4",
+    "file 40 taper4",
+    "file 20 taper 6",
+    "file 25 taper 6",
+    "file 30 taper 6",
+    "file 35 taper 6",
+    "file 40 taper 6"
+];
+function cleaningAndShapingCategories(){
+for(let index=0 ;index<cleaningAndShaping.length ; index++){
+    let head=document.createElement("h5"),
+        check=document.createElement("input"),
+        line=document.createElement("hr"),
+        cleaningContainer=document.createElement("div");
+        check.type="checkbox";
+        $(head).appendTo(cleaningContainer).addClass("cleaning-head").text(cleaningAndShaping[index]);
+        $(check).appendTo(cleaningContainer).addClass("cleaning-check").on('click',function(){
+            if(this.checked){
+                $(this).parent().attr("checked",true);
+            }
+            else if(!(this.checked)){
+                $(this).parent().attr("checked",false);
+            }
+        });
+        $(cleaningContainer).appendTo(".cleaning-shaping-cont").addClass("cleaning-parent");
+        $(line).addClass("horizontal").appendTo(".cleaning-shaping-cont");
+}
+}
+cleaningAndShapingCategories();
+
+
+
 
 $("input[class='head-check']").on('click',function(){
     if(this.checked){
@@ -1434,6 +1670,26 @@ $(".save-old").on("click",function(){
     endoWork[theIndex].obturationComment=$(".endo-comment").eq(4).val();
     endoWork[theIndex].finalRestorationComment=$(".endo-comment").eq(5).val();
 
+
+    glideWork[theIndex].file8=$(".glide-container").eq(0).attr("checked");
+    glideWork[theIndex].file10=$(".glide-container").eq(1).attr("checked");
+    glideWork[theIndex].file15=$(".glide-container").eq(2).attr("checked");
+    glideWork[theIndex].file20=$(".glide-container").eq(3).attr("checked");
+    glideWork[theIndex].file25=$(".glide-container").eq(4).attr("checked");
+
+    cleaningWork[theIndex].orficeOpener=$(".cleaning-parent").eq(0).attr("checked");
+    cleaningWork[theIndex].file20Taper4=$(".cleaning-parent").eq(1).attr("checked");
+    cleaningWork[theIndex].file25Taper4=$(".cleaning-parent").eq(2).attr("checked");
+    cleaningWork[theIndex].file30Taper4=$(".cleaning-parent").eq(3).attr("checked");
+    cleaningWork[theIndex].file35Taper4=$(".cleaning-parent").eq(4).attr("checked");
+    cleaningWork[theIndex].file40Taper4=$(".cleaning-parent").eq(5).attr("checked");
+    cleaningWork[theIndex].file20Taper6=$(".cleaning-parent").eq(6).attr("checked");
+    cleaningWork[theIndex].file25Taper6=$(".cleaning-parent").eq(7).attr("checked");
+    cleaningWork[theIndex].file30Taper6=$(".cleaning-parent").eq(8).attr("checked");
+    cleaningWork[theIndex].file35Taper6=$(".cleaning-parent").eq(9).attr("checked");
+    cleaningWork[theIndex].file40Taper6=$(".cleaning-parent").eq(10).attr("checked");
+
+
     thePatientVisits[theIndex]=$(".new-visit-container").children().clone();
     $(".new-visit-container").empty();
     theIndex="";
@@ -1474,8 +1730,18 @@ $(".save-old").on("click",function(){
             endoCheck[r].checked=false;
             $(endoCheck).eq(r).parent().attr("checked",false);
         }
+        let glideCheck=document.querySelectorAll(".glide-check");
+        for(let r=0;r<$("input[class='glide-check']").length;r++){
+            glideCheck[r].checked=false;
+            $(glideCheck).eq(r).parent().attr("checked",false);
+        }
+        let cleaningCheck=document.querySelectorAll(".cleaning-check");
+        for(let r=0;r<$("input[class='cleaning-check']").length;r++){
+            cleaningCheck[r].checked=false;
+            $(cleaningCheck).eq(r).parent().attr("checked",false);
+        }
         
-        $(".opertive-container , .post-core-container ,.ortho-container ,.removable-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container ,.removable-container ,.cleaning-shaping-cont").hide();
        
         return visitCounter=4;
 })
