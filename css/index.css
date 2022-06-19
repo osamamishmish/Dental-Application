@@ -142,7 +142,7 @@ ul li{
     width:100%;
     justify-content:space-between;
 } */
-.opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container , .partial , .complete ,.removable-cat ,.endo-container ,.glide-cont ,.cleaning-shaping-cont{
+.opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container , .partial , .complete ,.removable-cat ,.endo-container ,.glide-cont ,.cleaning-shaping-cont ,.extraction-container ,.implant-container{
     display:flex;
     flex-flow:column;
     width:100%;
@@ -153,6 +153,7 @@ ul li{
     display: flex;
     flex-flow:row;
     justify-content:space-between;
+    
 }
 .opertive-cont , .post-core-cont ,.ortho-cont ,.peudo-cont ,.crown-cont ,.partial-cont ,.complete-cont ,.partial-head h5  ,.complete-head h5 ,.endo-head ,.glide-head ,.cleaning-head{
     display:flex;
@@ -161,7 +162,7 @@ ul li{
 }
 .opertive-check ,.post-core-check , .ortho-check ,.peudo-check ,.crown-check ,.partial-check , .complete-check ,.partial-head input ,.complete-head input ,.endo-check ,.glide-check ,.cleaning-check{
     display:flex;
-    align-self:center;
+    align-self:flex-start;
     justify-content:flex-end;
 }
 .horizontal{
@@ -185,4 +186,24 @@ ul li{
     width:80%;
     margin-right:auto;
 }
-
+.svg-container{
+    width:150px;
+    height:150px;
+}
+.category-parent{
+    height:250px;
+}
+.svg-post-core-container ,.crown-svg-container ,.partial-svg ,.complete-svg {
+    width:200px;
+    height:200px;
+    margin-bottom:100px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.extraction-svg ,.implant-svg{
+    width:200px;
+    height:200px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:100px;
+}
