@@ -46,7 +46,7 @@ $(function(){
         $("input[type='text']").val("");
         $(".add-visit").hide();
         
-        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont .cleaning-shaping-cont ,.extraction-container ,.implant-container").hide();
+        $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont .cleaning-shaping-cont ,.extraction-container ,.implant-container ").hide();
        
     });
     
@@ -92,7 +92,7 @@ $(".home").on("click",function(){
     $("textarea").val("");
     $("input[type='text']").val("");
     $(".add-visit").hide();
-    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container .glide-cont .cleaning-shaping-cont ,.extraction-container ,.implant-container").hide();
+    $(".categories , .opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container .glide-cont .cleaning-shaping-cont ,.extraction-container ,.implant-container ").hide();
     
 })
 
@@ -308,6 +308,9 @@ $(".implant").on("click",function(){
 })
 
 
+
+
+
     }
 }
 
@@ -321,7 +324,7 @@ $(".add-patient").on("click",function(){
     $(".first-row , .second-row").empty();
     addCategories();
     $(".save-button").show();
-    $(".save-old , .categories , .category-parent ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.extraction-container ,.implant-container").hide();
+    $(".save-old , .categories , .category-parent ,.opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.extraction-container ,.implant-container ").hide();
     $(".add , .history-container ,.visits-info").addClass("hide");
     $(".add-visit").hide();
     $(".add-data , .card").toggleClass("hide");
@@ -1343,6 +1346,10 @@ orthoCategories();
 
 let peudo=["pulptomy","pulpectomy"];
 function peudoCategories(){
+    let svgContainer=document.createElement("div"),
+        theSvg=document.createElement("img");
+        $(theSvg).appendTo(svgContainer).attr("src","../imgs/peudo.svg");
+        $(svgContainer).prependTo(".peudo-container").addClass("peudo-svg");
     for(let index =0 ;index<peudo.length;index++){
         let peudoCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
@@ -1606,6 +1613,14 @@ function implantSvg(){
 }
 implantSvg();
 
+// function peudoSvg(){
+//     let svgContainer=document.createElement("div"),
+//         theSvg=document.createElement("img");
+//         $(theSvg).appendTo(svgContainer).attr("src","../imgs/peudo.svg");
+//         $(svgContainer).prependTo(".peudo-container").addClass("peudo-svg");
+// }
+// peudoSvg();
+
 
 $("input[class='head-check']").on('click',function(){
     if(this.checked){
@@ -1786,7 +1801,7 @@ $(".save-old").on("click",function(){
             $(cleaningCheck).eq(r).parent().attr("checked",false);
         }
         
-        $(".opertive-container , .post-core-container ,.ortho-container ,.removable-container ,.cleaning-shaping-cont ,.extraction-container ,.implant-container").hide();
+        $(".opertive-container , .post-core-container ,.ortho-container ,.removable-container ,.cleaning-shaping-cont ,.extraction-container ,.implant-container ,.peudo-container").hide();
        
         return visitCounter=4;
 })
