@@ -222,6 +222,7 @@ function addCategories(){
         }else{
             $(container).appendTo(".second-row");
         }
+        
         //show opertive categories
 $('.opertive').on("click",function(){
     
@@ -235,6 +236,7 @@ $('.opertive').on("click",function(){
 //show post and core categories
 $(".post-core").on("click",function(){
     $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
+    
     $(".post-core-container").show();
     $(".post-core-parent").show();
 });
@@ -298,6 +300,7 @@ $(".endo-head").eq(2).on("click",function(){
 })
 $(".extraction").on("click",function(){
     $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
+     
     $(".extraction-container").show();
     
 })
@@ -1245,16 +1248,17 @@ $("input[class='check-box']").on("click",function(){
 
 //Opertive Categories
 function opertiveCategories(){
+    
     for(let index =0 ;index<opertive.length;index++){
         let opertiveCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
-            opertiveSvg=document.createElement("img"),
             svgContainer=document.createElement("div"),
             line=document.createElement("hr"),
             categoriesContainer=document.createElement("div");
-            $(opertiveSvg).appendTo(svgContainer).attr("src","../imgs/index.svg");
+            let theSvg=$(".svg-parent").children().eq(0).clone();
+            $(theSvg).appendTo(svgContainer);
         $(opertiveCategories).appendTo(categoriesContainer).addClass("opertive-cont").text(opertive[index]);
-        $(svgContainer).appendTo(categoriesContainer).addClass("svg-container");
+        $(svgContainer).appendTo(categoriesContainer).addClass("opertive-svg");
         $(categoriesChecking).appendTo(categoriesContainer).addClass("opertive-check").attr("type","checkbox").on("click",function(){
             if(this.checked){
                 $(this).parent().attr("checked",true);
@@ -1265,8 +1269,10 @@ function opertiveCategories(){
         });
          $(line).addClass("horizontal");
         $(".opertive-container").append(categoriesContainer);
+
         $(".opertive-container").append(line);  
          $(categoriesContainer).addClass("category-parent");
+         
 
     }
 };
@@ -1278,12 +1284,12 @@ let postAndCore=[
     "Metal post",
     "custom made post"
 ];
-
 function postCoreCategories(){
-    let postAndCoreSvgContainer=document.createElement("div"),
-        postAndCoreSvg=document.createElement("img");
-        $(postAndCoreSvg).appendTo(postAndCoreSvgContainer).attr("src","../imgs/index.svg");
-        $(postAndCoreSvgContainer).prependTo(".post-core-container").addClass("svg-post-core-container");
+    
+    let toothSvg=$(".svg-parent").children().eq(0).clone(),
+        svgContainer=document.createElement("div");
+        $(svgContainer).prependTo(".post-core-container").addClass("post-core-svg");
+        $(toothSvg).appendTo(svgContainer);
     for(let index =0 ;index<postAndCore.length;index++){
         let postCoreCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
@@ -1299,11 +1305,14 @@ function postCoreCategories(){
             }
         });
          $(line).addClass("horizontal");
+         
         $(".post-core-container").append(categoriesContainer);
         $(".post-core-container").append(line);  
          $(categoriesContainer).addClass("post-core-parent");
 
     }
+    
+    
 };
 postCoreCategories();
 
@@ -1346,10 +1355,11 @@ orthoCategories();
 
 let peudo=["pulptomy","pulpectomy"];
 function peudoCategories(){
-    let svgContainer=document.createElement("div"),
-        theSvg=document.createElement("img");
-        $(theSvg).appendTo(svgContainer).attr("src","../imgs/peudo.svg");
-        $(svgContainer).prependTo(".peudo-container").addClass("peudo-svg");
+    let toothSvg=$(".svg-parent").children().eq(1).clone(),
+    svgContainer=document.createElement("div");
+    $(svgContainer).prependTo(".peudo-container").addClass("peudo-svg");
+    $(toothSvg).appendTo(svgContainer);
+        
     for(let index =0 ;index<peudo.length;index++){
         let peudoCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
@@ -1378,10 +1388,10 @@ peudoCategories();
 
 
 function crownCategories(){
-    let crownSvgContainer=document.createElement("div"),
-        crownSvg=document.createElement("img");
-        $(crownSvgContainer).prependTo(".crown-container").addClass("crown-svg-container");
-        $(crownSvg).appendTo(crownSvgContainer).attr("src","../imgs/index.svg");
+    let toothSvg=$(".svg-parent").children().eq(0).clone(),
+        svgContainer=document.createElement("div");
+        $(svgContainer).prependTo(".crown-container").addClass("crown-svg");
+        $(toothSvg).appendTo(svgContainer);
     for(let index =0 ;index<crown.length;index++){
         let crownCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
@@ -1427,10 +1437,10 @@ let removable=[{
     
 ];
 function addPartialCategories(){
-    let svgContainer=document.createElement("div"),
-        partialSvg=document.createElement("img");
-        $(partialSvg).appendTo(svgContainer).attr("src","../imgs/index.svg");
+    let toothSvg=$(".svg-parent").children().eq(0).clone(),
+        svgContainer=document.createElement("div");
         $(svgContainer).prependTo(".partial").addClass("partial-svg");
+        $(toothSvg).appendTo(svgContainer);
     for(let index =0 ;index<removable[0].partial.length;index++){
         let partialCategories=document.createElement("h5"),
             partialChecking=document.createElement("input"),
@@ -1457,10 +1467,10 @@ addPartialCategories();
 
 
 function addCompleteCategories(){
-    let svgContainer=document.createElement("div"),
-        completeSvg=document.createElement("img");
-        $(completeSvg).appendTo(svgContainer).attr("src","../imgs/index.svg");
-        $(svgContainer).prependTo(".complete").addClass("complete-svg");
+    let toothSvg=$(".svg-parent").children().eq(0).clone(),
+    svgContainer=document.createElement("div");
+    $(svgContainer).prependTo(".complete").addClass("complete-svg");
+    $(toothSvg).appendTo(svgContainer);
     for(let index =0 ;index<removable[0].complete.length;index++){
         let completeCategories=document.createElement("h5"),
             completeChecking=document.createElement("input"),
@@ -1596,30 +1606,40 @@ for(let index=0 ;index<cleaningAndShaping.length ; index++){
 cleaningAndShapingCategories();
 
 
-function extractionSvg(){
-    let svgContainer=document.createElement("div"),
-        theSvg=document.createElement("img");
-        $(theSvg).appendTo(svgContainer).attr("src","../imgs/index.svg");
+ function extractionSvg(){
+    let toothSvg=$(".svg-parent").children().eq(0).clone(),
+        svgContainer=document.createElement("div");
         $(svgContainer).prependTo(".extraction-container").addClass("extraction-svg");
-}
-extractionSvg();
+        $(toothSvg).appendTo(svgContainer);
+        
+ }
+ extractionSvg();
 
 
 function implantSvg(){
-    let svgContainer=document.createElement("div"),
-        theSvg=document.createElement("img");
-        $(theSvg).appendTo(svgContainer).attr("src","../imgs/index.svg");
+    let toothSvg=$(".svg-parent").children().eq(0).clone(),
+        svgContainer=document.createElement("div");
         $(svgContainer).prependTo(".implant-container").addClass("implant-svg");
+        $(toothSvg).appendTo(svgContainer);
+        
 }
 implantSvg();
 
-// function peudoSvg(){
-//     let svgContainer=document.createElement("div"),
-//         theSvg=document.createElement("img");
-//         $(theSvg).appendTo(svgContainer).attr("src","../imgs/peudo.svg");
-//         $(svgContainer).prependTo(".peudo-container").addClass("peudo-svg");
-// }
-// peudoSvg();
+
+$("svg polygon ,svg path").on("click",function(){
+    if($(this).attr("fill")=="#FFFFFF"){
+      return  $(this).attr("fill","black");
+    }else{
+     return   $(this).attr("fill","#FFFFFF");
+    }
+    
+});
+
+
+
+
+
+
 
 
 $("input[class='head-check']").on('click',function(){

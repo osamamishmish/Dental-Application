@@ -186,14 +186,14 @@ ul li{
     width:80%;
     margin-right:auto;
 }
-.svg-container{
+.svg-container ,.opertive-svg{
     width:150px;
     height:150px;
 }
 .category-parent{
     height:250px;
 }
-.svg-post-core-container ,.crown-svg-container ,.partial-svg ,.complete-svg {
+.post-core-svg ,.crown-svg ,.partial-svg ,.complete-svg  {
     width:200px;
     height:200px;
     margin-bottom:100px;
@@ -207,3 +207,7 @@ ul li{
     margin-right:auto;
     margin-bottom:100px;
 }
+polygon, path{
+    -webkit-transition:fill .25s;
+    transition:fill .25s;
+  }
