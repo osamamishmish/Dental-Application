@@ -1626,7 +1626,7 @@ function implantSvg(){
 implantSvg();
 
 
-$("svg polygon ,svg path").on("click",function(){
+$("svg polygon").on("click",function(){
     if($(this).attr("fill")=="#FFFFFF"){
       return  $(this).attr("fill","black");
     }else{
