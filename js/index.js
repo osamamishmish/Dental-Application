@@ -32,6 +32,7 @@ let thePatientVisits=[];
 let endoWork=[];
 let glideWork=[];
 let cleaningWork=[];
+let length=0;
 $(".save-button , .save-old , .categories , .opertive-container ,.post-core-container , .ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.add-visit ,.glide-cont ,.cleaning-shaping-cont").hide();
 $(".edit-button , .accordion").addClass("hide");
 
@@ -230,6 +231,9 @@ $('.opertive').on("click",function(){
     $(".categories ,.glide-cont .cleaning-shaping-cont").hide();
     $(".opertive-container").show();
     $(".category-parent").show();
+    
+    
+    
 
 });
 
@@ -594,6 +598,40 @@ $(".save-button").on("click",function(){
             $(cleaningCheck).eq(r).parent().attr("checked",false);
         }
          $(".opertive-container ,.post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container ,.endo-container ,.glide-cont ,.cleaning-shaping-cont ,.implant-container").hide();
+//          let opertiveSvg=document.querySelector(".category-parent");
+// const theChecked=opertiveSvg.getAttributeNames().map(e=>{
+//      e!="class"&&"style"
+//      return e;
+// })
+// console.log(theChecked);
+length++;
+ opertiveSvgCheck[length]=[
+    {
+        composite:[],
+        amalgum:[],
+        glassIonmer:[]
+    }
+];
+ postCoreSvgCheck[length]=[{
+    patient:[]
+}];
+ crownSvgCheck[length]=[{
+    patient:[]
+}];
+ removableSvgCheck[length]=[{
+    partial:[],
+    complete:[]
+}];
+ implantSvgCheck[length]=[{
+    patient:[]
+}];
+ extractionSvgCheck[length]=[{
+    patient:[]
+}];
+ peudoSvgCheck[length]=[{
+    patient:[]
+}];
+$("#Spots polygon ,#Spots path ,.spots polygon").attr("fill","#FFFFFF");
         return visitCounter=4;
 })
 
@@ -1244,7 +1282,7 @@ $("input[class='check-box']").on("click",function(){
 });
 
 
-
+let svgClasses=["composite-svg","amalgum-svg","glassIonmer-svg"]
 
 //Opertive Categories
 function opertiveCategories(){
@@ -1258,7 +1296,8 @@ function opertiveCategories(){
             let theSvg=$(".svg-parent").children().eq(0).clone();
             $(theSvg).appendTo(svgContainer);
         $(opertiveCategories).appendTo(categoriesContainer).addClass("opertive-cont").text(opertive[index]);
-        $(svgContainer).appendTo(categoriesContainer).addClass("opertive-svg");
+        $(svgContainer).appendTo(categoriesContainer).addClass(svgClasses[index]);
+        
         $(categoriesChecking).appendTo(categoriesContainer).addClass("opertive-check").attr("type","checkbox").on("click",function(){
             if(this.checked){
                 $(this).parent().attr("checked",true);
@@ -1275,6 +1314,8 @@ function opertiveCategories(){
          
 
     }
+    
+    
 };
 opertiveCategories();
 
@@ -1284,12 +1325,14 @@ let postAndCore=[
     "Metal post",
     "custom made post"
 ];
+
 function postCoreCategories(){
     
     let toothSvg=$(".svg-parent").children().eq(0).clone(),
         svgContainer=document.createElement("div");
         $(svgContainer).prependTo(".post-core-container").addClass("post-core-svg");
         $(toothSvg).appendTo(svgContainer);
+        
     for(let index =0 ;index<postAndCore.length;index++){
         let postCoreCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
@@ -1311,7 +1354,7 @@ function postCoreCategories(){
          $(categoriesContainer).addClass("post-core-parent");
 
     }
-    
+   
     
 };
 postCoreCategories();
@@ -1359,7 +1402,17 @@ function peudoCategories(){
     svgContainer=document.createElement("div");
     $(svgContainer).prependTo(".peudo-container").addClass("peudo-svg");
     $(toothSvg).appendTo(svgContainer);
+    // $("svg polygon").on("click",function(){
+    //     if($(this).attr("fill")=="#FFFFFF"){
+    //         peudoSvgCheck.push(this.id);
+    //       return  $(this).attr("fill","black");
+    //     }else{
+    //         let theId=peudoSvgCheck.indexOf(this.id);
+    // peudoSvgCheck.splice(theId,1)
+    //      return   $(this).attr("fill","#FFFFFF");
+    //     }
         
+    // });
     for(let index =0 ;index<peudo.length;index++){
         let peudoCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),
@@ -1626,17 +1679,122 @@ function implantSvg(){
 implantSvg();
 
 
-$("svg polygon").on("click",function(){
+let opertiveSvgCheck=[
+    {
+        composite:[],
+        amalgum:[],
+        glassIonmer:[]
+    }
+];
+let postCoreSvgCheck=[{
+    patient:[]
+}];
+let crownSvgCheck=[{
+    patient:[]
+}];
+let removableSvgCheck=[{
+    partial:[],
+    complete:[]
+}];
+let implantSvgCheck=[{
+    patient:[]
+}];
+let extractionSvgCheck=[{
+    patient:[]
+}];
+let peudoSvgCheck=[{
+    patient:[]
+}];
+
+let opertiveParent=document.querySelector(".composite-svg");
+$("#Spots polygon ,#Spots path ,.spots polygon").on("click",function(){
     if($(this).attr("fill")=="#FFFFFF"){
+        // console.log($(this).parent().closest("div"));
+        if($(this).parent().closest("div").attr("class")==="composite-svg"){
+            
+            opertiveSvgCheck[length].composite.push(this.id);     
+        }if($(this).parent().closest("div").attr("class")==="amalgum-svg"){
+            
+            opertiveSvgCheck[length].amalgum.push(this.id);
+        }if($(this).parent().closest("div").attr("class")==="glassIonmer-svg"){
+            
+            opertiveSvgCheck[length].glassIonmer.push(this.id);
+        } if($(this).parent().closest("div").attr("class")==="crown-svg"){
+            
+            crownSvgCheck[length].patient.push(this.id);
+        }if($(this).parent().closest("div").attr("class")==="implant-svg"){
+            
+            implantSvgCheck[length].patient.push(this.id);
+        }if($(this).parent().closest("div").attr("class")==="extraction-svg"){
+            
+            extractionSvgCheck[length].patient.push(this.id);
+        }if($(this).parent().closest("div").attr("class")==="post-core-svg"){
+            
+            postCoreSvgCheck[length].patient.push(this.id);
+        }
+        if($(this).parent().closest("div").attr("class")==="peudo-svg"){
+            
+            peudoSvgCheck[length].patient.push(this.id);
+        }if($(this).parent().closest("div").attr("class")==="partial-svg"){
+            
+            removableSvgCheck[length].partial.push(this.id);
+        }if($(this).parent().closest("div").attr("class")==="complete-svg"){
+            
+            removableSvgCheck[length].complete.push(this.id);
+        }
       return  $(this).attr("fill","black");
     }else{
+        if($(this).parent().closest("div").attr("class")==="composite-svg"){
+            let compositeIndex=opertiveSvgCheck[length].composite.indexOf(this.id);
+           opertiveSvgCheck[length].composite.splice(compositeIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="amalgum-svg"){
+            
+            let amalgumIndex=opertiveSvgCheck[length].amalgum.indexOf(this.id);
+            opertiveSvgCheck[length].amalgum.splice(amalgumIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="glassIonmer-svg"){
+            
+            let glassIonmerIndex=opertiveSvgCheck[length].glassIonmer.indexOf(this.id);
+            opertiveSvgCheck[length].glassIonmer.splice(glassIonmerIndex,1);
+        } if($(this).parent().closest("div").attr("class")==="crown-svg"){
+            
+            let crownIndex=crownSvgCheck[length].patient.indexOf(this.id);
+           crownSvgCheck[length].patient.splice(crownIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="implant-svg"){
+            
+            let implantIndex=implantSvgCheck[length].patient.indexOf(this.id);
+           implantSvgCheck[length].patient.splice(implantIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="extraction-svg"){
+            
+            let extractionIndex=extractionSvgCheck[length].patient.indexOf(this.id);
+            extractionSvgCheck[length].patient.splice(extractionIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="post-core-svg"){
+            
+            let postCoreIndex=postCoreSvgCheck[length].patient.indexOf(this.id);
+            postCoreSvgCheck[length].patient.splice(postCoreIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="peudo-svg"){
+            
+            let peudoIndex=peudoSvgCheck[length].patient.indexOf(this.id);
+            peudoSvgCheck[length].patient.splice(peudoIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="partial-svg"){
+            
+            let partialIndex=removableSvgCheck[length].partial.indexOf(this.id);
+            removableSvgCheck[length].partial.splice(partialIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="complete-svg"){
+            
+            let completeIndex=removableSvgCheck[length].complete.indexOf(this.id);
+            removableSvgCheck[length].complete.splice(completeIndex,1);
+        }
      return   $(this).attr("fill","#FFFFFF");
     }
     
 });
 
-
-
+console.log("opertiveSvg",opertiveSvgCheck);
+console.log("crownSvg",crownSvgCheck);
+console.log("implantSvg",implantSvgCheck);
+console.log("extractionSvg",extractionSvgCheck);
+console.log("peudoSvg",peudoSvgCheck);
+console.log("removableSvg",removableSvgCheck);
 
 
 
