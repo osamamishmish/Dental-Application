@@ -1232,6 +1232,13 @@ $(".search").on("click",function(){
              cleaningCheck[10].checked=false;
              $('.cleaning-container').eq(10).attr("checked",false);
            }
+for (let i=0 ;i<opertiveSvgCheck[theIndex].composite.length;i++){
+    let theChecked=document.getElementById(opertiveSvgCheck[theIndex].composite[i]);
+    console.log(theChecked);
+return $(theChecked).attr("fill","black");
+}
+
+
 
         }  
         
@@ -1402,17 +1409,6 @@ function peudoCategories(){
     svgContainer=document.createElement("div");
     $(svgContainer).prependTo(".peudo-container").addClass("peudo-svg");
     $(toothSvg).appendTo(svgContainer);
-    // $("svg polygon").on("click",function(){
-    //     if($(this).attr("fill")=="#FFFFFF"){
-    //         peudoSvgCheck.push(this.id);
-    //       return  $(this).attr("fill","black");
-    //     }else{
-    //         let theId=peudoSvgCheck.indexOf(this.id);
-    // peudoSvgCheck.splice(theId,1)
-    //      return   $(this).attr("fill","#FFFFFF");
-    //     }
-        
-    // });
     for(let index =0 ;index<peudo.length;index++){
         let peudoCategories=document.createElement("h5"),
             categoriesChecking=document.createElement("input"),

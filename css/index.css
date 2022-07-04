@@ -11,10 +11,9 @@ body{
     color:black;
     margin-top:70px;
     height:fit-content;
-    /* height:100%; */
-    padding-top:20px;
     padding-bottom: 20px;
-    
+    border:3px solid black;
+    border-radius:10px;
 }
 ul li{
     margin-left:50px;
@@ -38,6 +37,8 @@ ul li{
     height:100%;
     margin-left:auto;
     margin-right:auto;
+    border:3px solid black;
+    border-radius:10px;
 }
 .info-buttons{
     border:none;
@@ -78,7 +79,6 @@ ul li{
     align-items:center;
     justify-content: space-between;
     margin-left:50px;
-    /* margin-left:auto; */
 
     
 }
@@ -136,12 +136,7 @@ ul li{
 .check h5{
      margin-left:30px;
 }
-/* .category-parent{
-    display:flex;
-    flex-flow:row;
-    width:100%;
-    justify-content:space-between;
-} */
+
 .opertive-container , .post-core-container ,.ortho-container ,.peudo-container ,.crown-container ,.removable-container , .partial , .complete ,.removable-cat ,.endo-container ,.glide-cont ,.cleaning-shaping-cont ,.extraction-container ,.implant-container{
     display:flex;
     flex-flow:column;
