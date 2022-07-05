@@ -122,3 +122,23 @@ $('.add-visit').on("click",function(){
     $(".the-added-visit").last().children().eq(1).children().eq(0).children().eq(0).addClass($(".accordion-item").length+"th"+"-"+"date").removeClass("first-date").val("");
     $(".the-added-visit").last().children().eq(1).children().eq(1).children().eq(0).addClass($(".accordion-item").length+"th"+"-"+"note").removeClass("first-note").val("");
 })
+
+
+
+$("input[class='check-box']").on("click",function(){
+    if(this.checked){
+        $(this).parent().attr("checked",true);
+    }
+    else if(!(this.checked)){
+        $(this).parent().attr("checked",false);
+    }
+});
+
+$("input[class='head-check']").on('click',function(){
+    if(this.checked){
+        $(this).parent().attr("checked",true);
+    }
+    else if(!(this.checked)){
+        $(this).parent().attr("checked",false);
+    }
+});

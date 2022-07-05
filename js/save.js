@@ -40,6 +40,9 @@ let extractionSvgCheck=[{
 let peudoSvgCheck=[{
     patient:[]
 }];
+let endoSvgCheck=[{
+    patient:[]
+}];
 let length=0;
 
 
@@ -146,18 +149,18 @@ $(".save-button").on("click",function(){
         complete:$(".complete-head").attr("checked")
     });
     partialWork.push({
-        primaryImpression:$(".partial div").eq(0).attr("checked"),
-        secondaryImpression:$(".partial div").eq(1).attr("checked"),
-        jawRelationship:$(".partial div").eq(2).attr("checked"),
-        tryIn:$(".partial div").eq(3).attr("checked"),
-        delivery:$(".partial div").eq(4).attr("checked")
+        primaryImpression:$(".partial-parent").eq(0).attr("checked"),
+        secondaryImpression:$(".partial-parent").eq(1).attr("checked"),
+        jawRelationship:$(".partial-parent").eq(2).attr("checked"),
+        tryIn:$(".partial-parent").eq(3).attr("checked"),
+        delivery:$(".partial-parent").eq(4).attr("checked")
     })
     completeWork.push({
-        primaryImpression:$(".complete div").eq(0).attr("checked"),
-        secondaryImpression:$(".complete div").eq(1).attr("checked"),
-        jawRelationship:$(".complete div").eq(2).attr("checked"),
-        tryIn:$(".complete div").eq(3).attr("checked"),
-        delivery:$(".complete div").eq(4).attr("checked")
+        primaryImpression:$(".complete-parent").eq(0).attr("checked"),
+        secondaryImpression:$(".complete-parent").eq(1).attr("checked"),
+        jawRelationship:$(".complete-parent").eq(2).attr("checked"),
+        tryIn:$(".complete-parent").eq(3).attr("checked"),
+        delivery:$(".complete-parent").eq(4).attr("checked")
     })
     endoWork.push({
         accessCavity:$(".endo-parent").eq(0).attr("checked"),
@@ -232,6 +235,16 @@ $(".save-button").on("click",function(){
             removableCheck[r].checked=false;
             $(removableCheck).eq(r).parent().attr("checked",false);
         }
+        let partialCheck=document.querySelectorAll(".partial-check");
+        for(let r=0;r<$("input[class='partial-check']").length;r++){
+            partialCheck[r].checked=false;
+            $(partialCheck).eq(r).parent().attr("checked",false);
+        }
+        let completeCheck=document.querySelectorAll(".complete-check");
+        for(let r=0;r<$("input[class='complete-check']").length;r++){
+            completeCheck[r].checked=false;
+            $(completeCheck).eq(r).parent().attr("checked",false);
+        }
         let endoCheck=document.querySelectorAll(".endo-check");
         for(let r=0;r<$("input[class='endo-check']").length;r++){
             endoCheck[r].checked=false;
@@ -276,7 +289,11 @@ length++;
  peudoSvgCheck[length]=[{
     patient:[]
 }];
+endoSvgCheck[length]=[{
+    patient:[]
+}];
 $("#Spots polygon ,#Spots path ,.spots polygon").attr("fill","#FFFFFF");
+console.log(partialWork);
         return $(".accordion-item").length=4;
 })
 
@@ -318,6 +335,9 @@ $("#Spots polygon ,#Spots path ,.spots polygon").on("click",function(){
         }if($(this).parent().closest("div").attr("class")==="complete-svg"){
             
             removableSvgCheck[length].complete.push(this.id);
+        }if($(this).parent().closest("div").attr("class")==="endo-svg"){
+            
+            endoSvgCheck[length].patient.push(this.id);
         }
       return  $(this).attr("fill","black");
     }else{
@@ -360,12 +380,27 @@ $("#Spots polygon ,#Spots path ,.spots polygon").on("click",function(){
             
             let completeIndex=removableSvgCheck[length].complete.indexOf(this.id);
             removableSvgCheck[length].complete.splice(completeIndex,1);
+        }if($(this).parent().closest("div").attr("class")==="endo-svg"){
+            
+            let endoIndex=endoSvgCheck[length].patient.indexOf(this.id);
+            endoSvgCheck[length].patient.splice(endoIndex,1);
         }
      return   $(this).attr("fill","#FFFFFF");
     }
     
 });
 
+
+
+
+
+let theIndex;
+$(".search").on("click",function(){
+   
+     const index = personalInfo.map(object => object.name).indexOf($(".old-patient-name").val());
+   return  theIndex=index;
+     
+})
 
 
 
@@ -520,6 +555,16 @@ $(".save-old").on("click",function(){
             removableCheck[r].checked=false;
             $(removableCheck).eq(r).parent().attr("checked",false);
         }
+        let partialCheck=document.querySelectorAll(".partial-check");
+        for(let r=0;r<$("input[class='partial-check']").length;r++){
+            partialCheck[r].checked=false;
+            $(partialCheck).eq(r).parent().attr("checked",false);
+        }
+        let completeCheck=document.querySelectorAll(".complete-check");
+        for(let r=0;r<$("input[class='complete-check']").length;r++){
+            completeCheck[r].checked=false;
+            $(completeCheck).eq(r).parent().attr("checked",false);
+        }
         let endoCheck=document.querySelectorAll(".endo-check");
         for(let r=0;r<$("input[class='endo-check']").length;r++){
             endoCheck[r].checked=false;
@@ -543,3 +588,29 @@ $(".save-old").on("click",function(){
 
 
 
+
+
+
+$("input[class='check-box']").on("click",function(){
+    if(this.checked){
+        $(this).parent().attr("checked",true);
+    }
+    else if(!(this.checked)){
+        $(this).parent().attr("checked",false);
+    }
+});
+
+$("input[class='head-check']").on('click',function(){
+    if(this.checked){
+        $(this).parent().attr("checked",true);
+    }
+    else if(!(this.checked)){
+        $(this).parent().attr("checked",false);
+    }
+});
+
+
+
+
+
+console.log(endoSvgCheck);

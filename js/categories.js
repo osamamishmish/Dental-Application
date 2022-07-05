@@ -444,6 +444,10 @@ addCompleteCategories();
 
 
 function addEndoCategories(){
+    let toothSvg=$(".svg-parent").children().eq(0).clone(),
+        svgContainer=document.createElement("div");
+        $(svgContainer).prependTo(".endo-container").addClass("endo-svg");
+        $(toothSvg).appendTo(svgContainer);
     for (let index=0 ; index<endo.length ; index++){
         let theHead=document.createElement("h5"),
             textField=document.createElement('textarea'),
