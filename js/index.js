@@ -34,6 +34,22 @@ $(".home").on("click",function(){
 
 //add new patient
 $(".add-patient").on("click",function(){
+    if($("#input-name").val()==""||$("#input-phone").val()==""){
+        if($("#input-name").val()==""){
+                $(".name-warning").text("please enter patient name");
+            }else{
+                $(".name-warning").text(" ");
+            }
+            if($("#input-phone").val()==""){
+                $(".phone-warning").text("please enter phone number");
+        
+            }else{
+                $(".phone-warning").text(" ");
+            }
+    }else{
+        
+        $(".name-warning").text(" "); 
+        $(".phone-warning").text(" "); 
     $("div[class='check-cont']").empty();
     fillDiseasesHistory();
     $(".first-row , .second-row").empty();
@@ -53,6 +69,7 @@ $(".add-patient").on("click",function(){
         $(".info-style").eq(3).text("Date: "+$("#input-date").val());
         $(".info-style").eq(4).text("Phone Number: "+$("#input-phone").val());
        $(".accordion-item").length=4;
+    }
 });
 
 

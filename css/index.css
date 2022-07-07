@@ -208,3 +208,7 @@ polygon, path{
     -webkit-transition:fill .25s;
     transition:fill .25s;
   }
+.name-warning ,.phone-warning{
+    background-color:transparent;
+    color:red;
+}
